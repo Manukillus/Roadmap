@@ -1,0 +1,2263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ultimate Developer Roadmap 2025</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&family=Playfair+Display:wght@700;900&display=swap');
+
+:root {
+  --bg: #060610;
+  --surface: #0d0d1a;
+  --surface2: #141428;
+  --surface3: #1c1c38;
+  --border: #252545;
+  --border2: #30305a;
+  --text: #e8e8ff;
+  --muted: #6868a8;
+  --muted2: #4a4a7a;
+  
+  --fs-color: #ff6b9d;
+  --fs-glow: rgba(255,107,157,0.15);
+  --devops-color: #7c6fff;
+  --devops-glow: rgba(124,111,255,0.15);
+  --web3-color: #00f5c4;
+  --web3-glow: rgba(0,245,196,0.12);
+  --exam-color: #ffd060;
+  --exam-glow: rgba(255,208,96,0.12);
+  --job-color: #60cfff;
+  --job-glow: rgba(96,207,255,0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Space Grotesk', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(6,6,16,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 56px;
+  display: flex; align-items: center; gap: 4px;
+  overflow-x: auto;
+}
+nav::-webkit-scrollbar { height: 0; }
+.nav-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--muted);
+  transition: all 0.2s;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.nav-link:hover { color: var(--text); background: var(--surface2); border-color: var(--border); }
+.nav-link.fs { color: var(--fs-color); }
+.nav-link.devops { color: var(--devops-color); }
+.nav-link.web3 { color: var(--web3-color); }
+.nav-link.exam { color: var(--exam-color); }
+.nav-link.job { color: var(--job-color); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 100px 20px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 900px 600px at 15% 40%, rgba(124,111,255,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 700px 700px at 85% 20%, rgba(0,245,196,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 800px 400px at 50% 90%, rgba(255,107,157,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--web3-color);
+  border: 1px solid rgba(0,245,196,0.3);
+  background: rgba(0,245,196,0.05);
+  padding: 8px 24px; border-radius: 100px;
+  margin-bottom: 40px;
+  animation: fadeSlideUp 0.8s ease both;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(52px, 9vw, 120px);
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -3px;
+  margin-bottom: 28px;
+  animation: fadeSlideUp 0.8s ease both 0.1s;
+}
+.hero h1 .word1 { color: var(--fs-color); }
+.hero h1 .word2 { color: var(--devops-color); }
+.hero h1 .word3 {
+  background: linear-gradient(135deg, var(--web3-color), var(--job-color));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-sub {
+  font-size: 18px; color: var(--muted);
+  max-width: 680px; line-height: 1.75;
+  margin-bottom: 56px;
+  animation: fadeSlideUp 0.8s ease both 0.2s;
+}
+.phase-nav {
+  display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+  animation: fadeSlideUp 0.8s ease both 0.3s;
+}
+.phase-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; font-weight: 500;
+  padding: 10px 24px; border-radius: 100px;
+  text-decoration: none;
+  border: 1px solid; transition: all 0.25s;
+  display: flex; align-items: center; gap: 8px;
+}
+.phase-pill:hover { transform: translateY(-3px); filter: brightness(1.25); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+.pp-fs { color: var(--fs-color); border-color: rgba(255,107,157,0.3); background: rgba(255,107,157,0.06); }
+.pp-devops { color: var(--devops-color); border-color: rgba(124,111,255,0.3); background: rgba(124,111,255,0.06); }
+.pp-web3 { color: var(--web3-color); border-color: rgba(0,245,196,0.3); background: rgba(0,245,196,0.06); }
+.pp-exam { color: var(--exam-color); border-color: rgba(255,208,96,0.3); background: rgba(255,208,96,0.06); }
+.pp-job { color: var(--job-color); border-color: rgba(96,207,255,0.3); background: rgba(96,207,255,0.06); }
+
+/* ─── TIMELINE ─── */
+.timeline-connector {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 20px 0;
+}
+.connector-line {
+  width: 1px; height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--border2), transparent);
+}
+.connector-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  border: 2px solid var(--border2);
+  background: var(--bg);
+}
+
+/* ─── PHASE WRAPPER ─── */
+.phase-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
+
+/* ─── PHASE HEADER ─── */
+.phase-hero {
+  padding: 80px 0 48px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+.phase-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 20px;
+}
+.phase-tag::before {
+  content: ''; display: inline-block;
+  width: 24px; height: 1px;
+}
+.phase-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 900; line-height: 1.05;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+}
+.phase-desc {
+  font-size: 17px; color: var(--muted);
+  max-width: 700px; line-height: 1.7;
+  margin-bottom: 24px;
+}
+.phase-stats {
+  display: flex; flex-wrap: wrap; gap: 20px;
+}
+.stat-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  padding: 8px 20px;
+  border-radius: 100px;
+  border: 1px solid var(--border2);
+  background: var(--surface2);
+  color: var(--text);
+}
+.stat-chip span { margin-right: 6px; }
+
+/* ─── STAGE LABEL ─── */
+.stage-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  padding: 0 0 16px;
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 4px;
+}
+.stage-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ─── CARD GRID ─── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.25s, box-shadow 0.25s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border2);
+}
+.card-accent {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+}
+.card-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 2px;
+  color: var(--muted2);
+  margin-bottom: 10px;
+}
+.card-title {
+  font-size: 16px; font-weight: 700;
+  margin-bottom: 14px; letter-spacing: -0.3px;
+}
+.card-list {
+  list-style: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px; color: var(--muted);
+  line-height: 1.9;
+}
+.card-list li {
+  padding-left: 14px;
+  position: relative;
+}
+.card-list li::before {
+  content: '›';
+  position: absolute; left: 0;
+  color: var(--muted2);
+}
+
+/* ─── FULL-WIDTH SECTIONS ─── */
+.section-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 24px;
+}
+.section-block-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-block-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ─── RESOURCE LINKS ─── */
+.resource-grid {
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.resource-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  padding: 9px 18px; border-radius: 8px;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text); text-decoration: none;
+  transition: all 0.2s;
+}
+.resource-link:hover {
+  border-color: rgba(255,255,255,0.2);
+  color: #fff; transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.resource-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+/* ─── PROJECTS ─── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+.project-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.2s;
+}
+.project-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+.project-level {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 8px; font-weight: 600;
+}
+.project-name { font-size: 14px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.2px; }
+.project-desc { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); line-height: 1.6; }
+.project-stack {
+  display: flex; flex-wrap: wrap; gap: 4px; margin-top: 12px;
+}
+.tech-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; padding: 3px 8px; border-radius: 4px;
+  background: var(--surface3); border: 1px solid var(--border2);
+  color: var(--muted);
+}
+
+/* ─── TIPS ─── */
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+.tip-card {
+  padding: 14px 18px;
+  background: var(--surface2);
+  border-radius: 10px;
+  border-left: 3px solid;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; color: var(--text);
+  line-height: 1.6;
+}
+
+/* ─── PYQ TABLE ─── */
+.pyq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px;
+}
+.pyq-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  text-align: center;
+  transition: all 0.2s;
+}
+.pyq-card:hover { border-color: var(--border2); }
+.pyq-year {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; font-weight: 700;
+  margin-bottom: 6px;
+}
+.pyq-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.pyq-link:hover { color: var(--exam-color); }
+
+/* ─── JOB SECTION ─── */
+.job-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 20px;
+  position: relative; overflow: hidden;
+}
+.job-card-accent { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--job-color), transparent); }
+.job-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.3px; display: flex; align-items: center; gap: 12px; }
+.job-steps { counter-reset: step; display: flex; flex-direction: column; gap: 14px; }
+.job-step {
+  display: flex; gap: 16px; align-items: flex-start;
+  font-family: 'JetBrains Mono', monospace; font-size: 12.5px;
+  line-height: 1.7; color: var(--text);
+}
+.step-n {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; flex-shrink: 0;
+  margin-top: 2px;
+  background: var(--surface2); border: 1px solid var(--border2);
+  color: var(--job-color);
+}
+.job-template {
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; line-height: 1.8;
+  color: var(--muted); margin-top: 16px;
+  white-space: pre-wrap;
+}
+.job-template .placeholder { color: var(--job-color); }
+
+/* ─── APTITUDE ─── */
+.apt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.apt-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px;
+}
+.apt-card-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; }
+
+/* ─── SECTION MEGA TITLE ─── */
+.mega-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px 20px;
+  text-align: center;
+}
+.mega-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.mega-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 70px);
+  font-weight: 900; letter-spacing: -2px;
+  margin-bottom: 16px;
+}
+.mega-sub { font-size: 16px; color: var(--muted); max-width: 600px; margin: 0 auto; }
+
+/* ─── SEPARATOR ─── */
+.phase-separator {
+  max-width: 1200px; margin: 0 auto 0;
+  padding: 60px 20px 0;
+  display: flex; align-items: center; gap: 20px;
+}
+.phase-separator::before, .phase-separator::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+.phase-separator span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 4px; color: var(--muted2);
+  text-transform: uppercase; white-space: nowrap;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  text-align: center;
+  padding: 60px 20px;
+  border-top: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; color: var(--muted2);
+}
+footer span { color: var(--web3-color); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── COLOR HELPERS ─── */
+.c-fs { color: var(--fs-color); }
+.c-devops { color: var(--devops-color); }
+.c-web3 { color: var(--web3-color); }
+.c-exam { color: var(--exam-color); }
+.c-job { color: var(--job-color); }
+
+.bg-fs { background: var(--fs-glow); }
+.bg-devops { background: var(--devops-glow); }
+.bg-web3 { background: var(--web3-glow); }
+.bg-exam { background: var(--exam-glow); }
+
+.accent-fs { background: linear-gradient(90deg, var(--fs-color), transparent); }
+.accent-devops { background: linear-gradient(90deg, var(--devops-color), transparent); }
+.accent-web3 { background: linear-gradient(90deg, var(--web3-color), transparent); }
+.accent-exam { background: linear-gradient(90deg, var(--exam-color), transparent); }
+.accent-job { background: linear-gradient(90deg, var(--job-color), transparent); }
+
+.border-fs { border-color: rgba(255,107,157,0.25); }
+.border-devops { border-color: rgba(124,111,255,0.25); }
+.border-web3 { border-color: rgba(0,245,196,0.25); }
+.border-exam { border-color: rgba(255,208,96,0.25); }
+.border-job { border-color: rgba(96,207,255,0.25); }
+
+/* ─── HOVER GLOWS FOR CARDS ─── */
+.card.fs-card:hover { box-shadow: 0 8px 40px rgba(255,107,157,0.1); }
+.card.devops-card:hover { box-shadow: 0 8px 40px rgba(124,111,255,0.1); }
+.card.web3-card:hover { box-shadow: 0 8px 40px rgba(0,245,196,0.1); }
+
+@media (max-width: 640px) {
+  .phase-hero { padding: 60px 0 32px; }
+  nav { gap: 2px; padding: 0 12px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .tips-grid { grid-template-columns: 1fr; }
+}
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+.highlight-band {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 22px;
+  margin: 16px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; color: var(--text); line-height: 1.7;
+}
+.info-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace; font-size: 12px;
+}
+.info-row:last-child { border-bottom: none; }
+.info-label { color: var(--muted); min-width: 140px; }
+.info-value { color: var(--text); }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a href="#fswd" class="nav-link fs">🔴 Full Stack</a>
+  <a href="#devops" class="nav-link devops">🟣 DevOps & Cloud</a>
+  <a href="#web3" class="nav-link web3">🟢 Web3 / Solana</a>
+  <a href="#ielts" class="nav-link exam">🟡 IELTS</a>
+  <a href="#gre" class="nav-link exam">🟡 GRE</a>
+  <a href="#gate" class="nav-link exam">🟡 GATE</a>
+  <a href="#aptitude" class="nav-link exam">📐 Aptitude</a>
+  <a href="#jobs" class="nav-link job">🔵 Get The Job</a>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-badge">⚡ The Only Roadmap You'll Ever Need · 2025 Edition</div>
+  <h1>
+    <span class="word1">Build.</span><br>
+    <span class="word2">Deploy.</span><br>
+    <span class="word3">Dominate.</span>
+  </h1>
+  <p class="hero-sub">
+    Your complete, zero-excuse, no-shortcuts blueprint — Full Stack → DevOps & Cloud → Web3. 
+    Plus IELTS, GRE, GATE, Aptitude, and a full playbook to land the job you deserve. 
+    Grind hard. Ship fast. Win big.
+  </p>
+  <div class="phase-nav">
+    <a href="#fswd" class="phase-pill pp-fs">🔴 Full Stack Dev <em style="opacity:0.6;font-style:normal">12–18 mo</em></a>
+    <a href="#devops" class="phase-pill pp-devops">🟣 DevOps & Cloud <em style="opacity:0.6;font-style:normal">6–9 mo</em></a>
+    <a href="#web3" class="phase-pill pp-web3">🟢 Web3 / Solana <em style="opacity:0.6;font-style:normal">4–6 mo</em></a>
+    <a href="#exams" class="phase-pill pp-exam">🟡 IELTS · GRE · GATE</a>
+    <a href="#jobs" class="phase-pill pp-job">🔵 Land The Job</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     PHASE 1: FULL STACK WEB DEVELOPMENT
+══════════════════════════════════════════════════ -->
+<div id="fswd" class="phase-wrapper">
+  <div class="phase-hero">
+    <div class="phase-tag c-fs" style="margin-bottom:20px;">
+      <span style="width:24px;height:1px;background:var(--fs-color);display:inline-block;"></span>
+      PHASE 01 · FULL STACK WEB DEVELOPMENT
+    </div>
+    <h2 class="phase-title" style="color:var(--fs-color)">Full Stack<br>Web Development</h2>
+    <p class="phase-desc">Master the entire web development stack — from pixel-perfect UIs to robust backend systems and scalable databases. This is your foundation for everything that follows.</p>
+    <div class="phase-stats">
+      <div class="stat-chip"><span>⏱</span>Duration: 12–18 Months (grinding daily)</div>
+      <div class="stat-chip"><span>📋</span>Topics: 50+ Core Concepts</div>
+      <div class="stat-chip"><span>🏗️</span>Projects: 8+ Portfolio-Ready Builds</div>
+      <div class="stat-chip"><span>🎯</span>Goal: Senior-Level Readiness</div>
+    </div>
+  </div>
+
+  <!-- STAGE 1 -->
+  <div class="stage-label c-fs">Stage 1 · Foundations &amp; Web Basics (Months 1–3)</div>
+  <div class="card-grid">
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">01</div>
+      <div class="card-title">HTML / CSS (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Semantic HTML5 tags (header, nav, main, article, section, aside)</li>
+        <li>Forms, inputs, validations &amp; accessibility (ARIA)</li>
+        <li>CSS Box model, specificity, cascade &amp; inheritance</li>
+        <li>Flexbox &amp; CSS Grid (full mastery)</li>
+        <li>Responsive design — mobile-first approach, media queries</li>
+        <li>CSS Variables, animations, transitions, keyframes</li>
+        <li>SASS/SCSS preprocessor</li>
+        <li>BEM methodology &amp; naming conventions</li>
+        <li>Tailwind CSS utility-first framework</li>
+        <li>SEO basics: meta tags, OG tags, structured data</li>
+      </ul>
+    </div>
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">02</div>
+      <div class="card-title">JS Basics (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Data types, variables (let, const, var)</li>
+        <li>Functions, scope, closures &amp; hoisting</li>
+        <li>Arrays, Objects, Map, Set — all methods</li>
+        <li>DOM manipulation, event listeners &amp; bubbling</li>
+        <li>Error handling: try/catch/finally</li>
+        <li>LocalStorage, SessionStorage, Cookies</li>
+        <li>Modules: import/export (ES6+)</li>
+        <li>Regular expressions basics</li>
+        <li>Type coercion &amp; equality (== vs ===)</li>
+      </ul>
+    </div>
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">03</div>
+      <div class="card-title">JS Architecture (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Prototypal inheritance &amp; prototype chain</li>
+        <li>Classes, OOP patterns in JS</li>
+        <li>Design patterns: Singleton, Factory, Observer, Module</li>
+        <li>Functional programming: map, reduce, filter, compose</li>
+        <li>Immutability &amp; pure functions</li>
+        <li>Memory management &amp; garbage collection</li>
+        <li>JS engine internals (V8 basics)</li>
+        <li>Call Stack, Heap &amp; Memory</li>
+      </ul>
+    </div>
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">04</div>
+      <div class="card-title">Async JS (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Event Loop — deep understanding</li>
+        <li>Callbacks &amp; callback hell</li>
+        <li>Promises: .then(), .catch(), .finally(), Promise.all()</li>
+        <li>Async/Await — error handling patterns</li>
+        <li>Microtasks vs Macrotasks</li>
+        <li>Fetch API, XMLHttpRequest</li>
+        <li>AbortController for cancelling requests</li>
+        <li>Web Workers for background processing</li>
+      </ul>
+    </div>
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">05</div>
+      <div class="card-title">Node vs Browser JS (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Node.js runtime — event loop, V8, libuv</li>
+        <li>Node.js globals: __dirname, __filename, process</li>
+        <li>CommonJS vs ES Modules</li>
+        <li>Node.js built-in modules: fs, path, os, events</li>
+        <li>npm / yarn / pnpm — package management</li>
+        <li>package.json scripts &amp; node_modules</li>
+        <li>Environment variables (.env, dotenv)</li>
+        <li>BunJS — next-gen JS runtime</li>
+      </ul>
+    </div>
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">06</div>
+      <div class="card-title">Internet, Git &amp; Developer Toolkit</div>
+      <ul class="card-list">
+        <li>How the internet works: DNS, TCP/IP, HTTP/HTTPS</li>
+        <li>Browser rendering pipeline</li>
+        <li>HTTP methods, status codes, headers, cookies</li>
+        <li>Git: clone, commit, push, pull, rebase, stash, cherry-pick</li>
+        <li>GitHub: PRs, Issues, Actions, branching strategies</li>
+        <li>VS Code: essential extensions, shortcuts, settings.json</li>
+        <li>Terminal: bash, zsh, common commands</li>
+        <li>Chrome DevTools deep dive</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STAGE 2 -->
+  <div class="stage-label c-fs">Stage 2 · HTTP, Express &amp; Backend Foundations (Months 3–6)</div>
+  <div class="card-grid">
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">07</div>
+      <div class="card-title">HTTP and Express (From Syllabus)</div>
+      <ul class="card-list">
+        <li>REST API design principles &amp; best practices</li>
+        <li>Express.js: routing, middleware, error handling</li>
+        <li>Request/Response lifecycle</li>
+        <li>CORS, Helmet, compression middleware</li>
+        <li>Rate limiting (express-rate-limit)</li>
+        <li>File uploads with Multer</li>
+        <li>Input validation (Zod, Joi, express-validator)</li>
+        <li>API versioning strategies</li>
+        <li>Swagger / OpenAPI documentation</li>
+        <li>HTTP caching headers</li>
+      </ul>
+    </div>
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">08</div>
+      <div class="card-title">Databases and MongoDB (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Database fundamentals: RDBMS vs NoSQL</li>
+        <li>MongoDB: CRUD, aggregation pipeline</li>
+        <li>Mongoose ODM — schema, models, middleware hooks</li>
+        <li>Indexing strategies for performance</li>
+        <li>Transactions in MongoDB</li>
+        <li>MongoDB Atlas (cloud managed)</li>
+        <li>Data modeling patterns (embedding vs referencing)</li>
+        <li>Query optimization &amp; explain plans</li>
+      </ul>
+    </div>
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">09</div>
+      <div class="card-title">Postgres + Prisma/Drizzle (From Syllabus)</div>
+      <ul class="card-list">
+        <li>PostgreSQL: tables, joins, indexes, views, triggers</li>
+        <li>SQL: SELECT, INSERT, UPDATE, DELETE, subqueries</li>
+        <li>Database normalization (1NF, 2NF, 3NF)</li>
+        <li>ACID properties &amp; transactions</li>
+        <li>Prisma ORM: schema, migrations, relations, seeding</li>
+        <li>Drizzle ORM (type-safe, lightweight alternative)</li>
+        <li>Connection pooling (pgBouncer, Neon)</li>
+        <li>Query performance with EXPLAIN ANALYZE</li>
+        <li>PostgreSQL row-level security (RLS)</li>
+      </ul>
+    </div>
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">10</div>
+      <div class="card-title">Authentication &amp; Security</div>
+      <ul class="card-list">
+        <li>JWT — signing, verifying, refresh tokens</li>
+        <li>Session-based auth vs token-based</li>
+        <li>OAuth 2.0 / OpenID Connect flows</li>
+        <li>NextAuth.js / Auth.js / Clerk</li>
+        <li>Password hashing: bcrypt, argon2</li>
+        <li>OWASP Top 10 vulnerabilities</li>
+        <li>XSS, CSRF, SQL Injection prevention</li>
+        <li>2FA / TOTP (authenticator apps)</li>
+        <li>API key management &amp; rotation</li>
+      </ul>
+    </div>
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">11</div>
+      <div class="card-title">TypeScript (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Types, interfaces, type aliases</li>
+        <li>Generics — functions, classes, utility types</li>
+        <li>Union, Intersection, Discriminated unions</li>
+        <li>TypeScript with React, Node.js, Prisma</li>
+        <li>Utility types: Pick, Omit, Partial, Required, Record</li>
+        <li>Decorators &amp; metadata</li>
+        <li>Module augmentation &amp; declaration merging</li>
+        <li>tsconfig.json mastery</li>
+        <li>Strict mode &amp; null safety</li>
+      </ul>
+    </div>
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">12</div>
+      <div class="card-title">Advanced Backend</div>
+      <ul class="card-list">
+        <li>Redis: caching, sessions, pub/sub, sorted sets</li>
+        <li>GraphQL: schema, resolvers, Apollo Server</li>
+        <li>tRPC — type-safe end-to-end APIs</li>
+        <li>Background jobs: BullMQ, Agenda</li>
+        <li>Email: Nodemailer, Resend, SendGrid</li>
+        <li>File storage: AWS S3, Cloudflare R2</li>
+        <li>Search: Elasticsearch, Meilisearch, Typesense</li>
+        <li>Payments: Stripe integration, webhooks</li>
+        <li>Serverless functions: Vercel/AWS Lambda</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STAGE 3 -->
+  <div class="stage-label c-fs">Stage 3 · Frontend Advanced — React, Next.js &amp; More (Months 6–11)</div>
+  <div class="card-grid">
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">13</div>
+      <div class="card-title">React (From Syllabus)</div>
+      <ul class="card-list">
+        <li>JSX, components, props, state, keys</li>
+        <li>Hooks: useState, useEffect, useRef, useMemo, useCallback</li>
+        <li>useReducer, useContext, useLayoutEffect, useId</li>
+        <li>React Router v6 — nested routes, loaders, actions</li>
+        <li>Custom hooks — building reusable logic</li>
+        <li>Error Boundaries, Suspense, lazy loading</li>
+        <li>React.memo, forwardRef, useImperativeHandle</li>
+        <li>Performance optimization patterns</li>
+        <li>React DevTools profiling</li>
+      </ul>
+    </div>
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">14</div>
+      <div class="card-title">Tailwind CSS (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Utility-first CSS philosophy</li>
+        <li>Responsive prefixes: sm, md, lg, xl, 2xl</li>
+        <li>Dark mode, custom themes, tailwind.config.js</li>
+        <li>Component extraction with @apply</li>
+        <li>ShadCN/UI, Radix UI, HeadlessUI with Tailwind</li>
+        <li>Animation with tailwindcss-animate</li>
+        <li>Tailwind Typography plugin</li>
+        <li>Framer Motion for advanced animations</li>
+      </ul>
+    </div>
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">15</div>
+      <div class="card-title">Next.js (From Syllabus)</div>
+      <ul class="card-list">
+        <li>App Router architecture (Next.js 13+)</li>
+        <li>Server Components vs Client Components</li>
+        <li>Rendering strategies: SSR, SSG, ISR, CSR, PPR</li>
+        <li>Layouts, templates, loading, error files</li>
+        <li>Server Actions — forms &amp; mutations</li>
+        <li>Route handlers (API routes in App Router)</li>
+        <li>Middleware — auth guards, redirects</li>
+        <li>Image, Font, Link, Script optimizations</li>
+        <li>Deployment: Vercel, self-hosting on Docker</li>
+        <li>Parallel &amp; intercepting routes</li>
+      </ul>
+    </div>
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">16</div>
+      <div class="card-title">Websockets + WebRTC (From Syllabus)</div>
+      <ul class="card-list">
+        <li>WebSocket protocol — handshake, frames</li>
+        <li>Socket.io — rooms, namespaces, events, broadcasting</li>
+        <li>Real-time chat, notifications, dashboards</li>
+        <li>WebRTC — peer-to-peer, ICE, STUN/TURN servers</li>
+        <li>Video/audio streaming, screen sharing</li>
+        <li>Server-Sent Events (SSE) for one-way streams</li>
+        <li>Presence detection &amp; online status</li>
+      </ul>
+    </div>
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">17</div>
+      <div class="card-title">Queues / Pub-Sub (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Message queue concepts &amp; use cases</li>
+        <li>BullMQ with Redis — job queues, workers, schedulers</li>
+        <li>RabbitMQ — exchanges, routing keys, binding</li>
+        <li>Kafka basics — topics, partitions, consumers</li>
+        <li>Pub/Sub with Redis</li>
+        <li>Webhook delivery &amp; retry mechanisms</li>
+        <li>Dead letter queues &amp; error handling</li>
+        <li>Event-driven architecture patterns</li>
+      </ul>
+    </div>
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">18</div>
+      <div class="card-title">Turborepo + BunJS (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Monorepo architecture &amp; benefits</li>
+        <li>Turborepo: workspaces, pipelines, caching</li>
+        <li>Shared packages across apps in monorepo</li>
+        <li>BunJS — install, run, bundle, test</li>
+        <li>Bun vs Node.js performance comparison</li>
+        <li>Bun's built-in SQLite, file router, HTTP server</li>
+        <li>Hono.js — ultra-fast web framework for Bun/Edge</li>
+        <li>Workspace tooling: changesets, release management</li>
+      </ul>
+    </div>
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">19</div>
+      <div class="card-title">State Management</div>
+      <ul class="card-list">
+        <li>Redux Toolkit (RTK) + RTK Query</li>
+        <li>Zustand — simple, scalable state</li>
+        <li>TanStack Query (React Query) — server state</li>
+        <li>Jotai / Recoil — atomic state</li>
+        <li>Context API patterns &amp; pitfalls</li>
+        <li>Optimistic updates &amp; cache invalidation</li>
+        <li>Selecting the right tool for the job</li>
+      </ul>
+    </div>
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">20</div>
+      <div class="card-title">Testing &amp; Quality</div>
+      <ul class="card-list">
+        <li>Unit testing: Jest, Vitest</li>
+        <li>React Testing Library (RTL)</li>
+        <li>E2E testing: Cypress, Playwright</li>
+        <li>API testing: Supertest, Hoppscotch</li>
+        <li>Storybook — component documentation</li>
+        <li>ESLint + Prettier (code quality)</li>
+        <li>Husky + lint-staged (pre-commit hooks)</li>
+        <li>CI testing pipelines</li>
+        <li>Code coverage with Istanbul/nyc</li>
+      </ul>
+    </div>
+    <div class="card fs-card border-fs">
+      <div class="card-accent accent-fs"></div>
+      <div class="card-num">21</div>
+      <div class="card-title">CS Fundamentals (Must Have)</div>
+      <ul class="card-list">
+        <li>Data structures: arrays, linked lists, stacks, queues</li>
+        <li>Trees, graphs, hash maps, heaps, tries</li>
+        <li>Algorithms: sorting, searching, BFS, DFS</li>
+        <li>Big O notation — time &amp; space complexity</li>
+        <li>Dynamic programming &amp; greedy algorithms</li>
+        <li>Bit manipulation basics</li>
+        <li>System design fundamentals</li>
+        <li>LeetCode — 150+ problems (Blind 75 + NeetCode 150)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- RESOURCES: FSWD -->
+  <div class="section-block">
+    <div class="section-block-title">📚 Best Resources (Reddit Recommended)</div>
+    <div class="resource-grid">
+      <a href="https://www.theodinproject.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ff6b9d"></span>The Odin Project (FREE — #1 Reddit pick)</a>
+      <a href="https://fullstackopen.com/en/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ff6b9d"></span>Full Stack Open — Helsinki Uni (FREE)</a>
+      <a href="https://www.freecodecamp.org/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ff6b9d"></span>freeCodeCamp (FREE + Certifications)</a>
+      <a href="https://www.udemy.com/course/the-web-developer-bootcamp/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>Colt Steele Web Dev Bootcamp (Udemy)</a>
+      <a href="https://www.udemy.com/course/the-complete-web-development-bootcamp/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>Dr. Angela Yu Bootcamp (Udemy)</a>
+      <a href="https://zerotomastery.io/courses/coding-bootcamp/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>Zero to Mastery — Web Dev</a>
+      <a href="https://javascript.info/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>javascript.info (Best JS Reference)</a>
+      <a href="https://developer.mozilla.org/en-US/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>MDN Web Docs</a>
+      <a href="https://nextjs.org/learn" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>Next.js Official Docs (FREE)</a>
+      <a href="https://www.typescriptlang.org/docs/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>TypeScript Official Docs</a>
+      <a href="https://www.youtube.com/@TraversyMedia" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>Traversy Media (YouTube)</a>
+      <a href="https://www.youtube.com/@Fireship" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>Fireship (YouTube — Quick Deep Dives)</a>
+      <a href="https://www.youtube.com/@TheCodingtrain" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>The Coding Train (YouTube)</a>
+      <a href="https://www.youtube.com/@hnasr" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>Hussein Nasser — Backend Engineering</a>
+      <a href="https://roadmap.sh/full-stack" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Roadmap.sh — Official Roadmaps</a>
+      <a href="https://neetcode.io/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>NeetCode — DSA Practice</a>
+    </div>
+  </div>
+
+  <!-- PROJECTS: FSWD -->
+  <div class="section-block">
+    <div class="section-block-title">🏗️ Projects To Build (Portfolio)</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-level c-fs">Beginner</div>
+        <div class="project-name">Personal Portfolio Site</div>
+        <div class="project-desc">Fully responsive portfolio with animations, dark mode, contact form, and deployed on Vercel.</div>
+        <div class="project-stack"><span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">JS</span><span class="tech-tag">Vercel</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-level c-fs">Beginner</div>
+        <div class="project-name">Weather Dashboard</div>
+        <div class="project-desc">Real-time weather app with location search, 5-day forecast, charts. Fetch external API data.</div>
+        <div class="project-stack"><span class="tech-tag">React</span><span class="tech-tag">Tailwind</span><span class="tech-tag">OpenWeather API</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-level" style="color:#ffd060">Intermediate</div>
+        <div class="project-name">Full-Stack Blog/CMS</div>
+        <div class="project-desc">Auth, CRUD posts, rich text editor, image uploads to S3, role-based access (admin/user).</div>
+        <div class="project-stack"><span class="tech-tag">Next.js</span><span class="tech-tag">Postgres</span><span class="tech-tag">Prisma</span><span class="tech-tag">Auth.js</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-level" style="color:#ffd060">Intermediate</div>
+        <div class="project-name">Real-Time Chat App</div>
+        <div class="project-desc">WebSocket-powered group chat with rooms, presence indicators, file sharing, read receipts.</div>
+        <div class="project-stack"><span class="tech-tag">React</span><span class="tech-tag">Socket.io</span><span class="tech-tag">Node.js</span><span class="tech-tag">Redis</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-level" style="color:#ffd060">Intermediate</div>
+        <div class="project-name">E-Commerce Platform</div>
+        <div class="project-desc">Full store with product catalog, cart, Stripe payments, order tracking, admin dashboard.</div>
+        <div class="project-stack"><span class="tech-tag">Next.js</span><span class="tech-tag">Stripe</span><span class="tech-tag">PostgreSQL</span><span class="tech-tag">Prisma</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-level" style="color:#7c6fff">Advanced</div>
+        <div class="project-name">DevOps-Ready SaaS App</div>
+        <div class="project-desc">Multi-tenant SaaS with subscriptions, usage limits, team invites, billing portal, webhooks.</div>
+        <div class="project-stack"><span class="tech-tag">Next.js</span><span class="tech-tag">tRPC</span><span class="tech-tag">Stripe</span><span class="tech-tag">Clerk</span><span class="tech-tag">BullMQ</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-level" style="color:#7c6fff">Advanced</div>
+        <div class="project-name">Video Streaming Platform</div>
+        <div class="project-desc">Upload, transcode, stream videos (HLS), comments, likes, subscriptions. YouTube clone.</div>
+        <div class="project-stack"><span class="tech-tag">Next.js</span><span class="tech-tag">FFmpeg</span><span class="tech-tag">AWS S3</span><span class="tech-tag">CloudFront</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-level" style="color:#7c6fff">Advanced</div>
+        <div class="project-name">AI-Powered App</div>
+        <div class="project-desc">RAG chatbot, AI content generator, or coding assistant. Integrate OpenAI/Claude API with streaming.</div>
+        <div class="project-stack"><span class="tech-tag">Next.js</span><span class="tech-tag">Vercel AI SDK</span><span class="tech-tag">Pinecone</span><span class="tech-tag">OpenAI</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     PHASE 2: DEVOPS & CLOUD
+══════════════════════════════════════════════════ -->
+<div id="devops" class="phase-separator"><span>— Phase 2 Begins Here —</span></div>
+<div class="phase-wrapper">
+  <div class="phase-hero">
+    <div class="phase-tag c-devops" style="margin-bottom:20px;">
+      <span style="width:24px;height:1px;background:var(--devops-color);display:inline-block;"></span>
+      PHASE 02 · DEVOPS &amp; CLOUD ENGINEERING
+    </div>
+    <h2 class="phase-title" style="color:var(--devops-color)">DevOps &amp;<br>Cloud</h2>
+    <p class="phase-desc">Master the infrastructure side — containers, orchestration, CI/CD, IaC, monitoring, and cloud platforms. Make your code production-grade and infinitely scalable.</p>
+    <div class="phase-stats">
+      <div class="stat-chip"><span>⏱</span>Duration: 6–9 Months</div>
+      <div class="stat-chip"><span>📋</span>14 Core Topics (From Syllabus)</div>
+      <div class="stat-chip"><span>☁️</span>Cloud: AWS / GCP / Azure</div>
+      <div class="stat-chip"><span>🎯</span>Certifications: CKA, AWS SAA</div>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card devops-card border-devops">
+      <div class="card-accent accent-devops"></div>
+      <div class="card-num">01</div>
+      <div class="card-title">Bash / Terminal (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Shell scripting: variables, loops, conditionals, functions</li>
+        <li>File system navigation, permissions (chmod, chown)</li>
+        <li>Process management: ps, top, htop, kill, systemctl</li>
+        <li>Text processing: grep, sed, awk, cut, sort, uniq</li>
+        <li>Cron jobs &amp; scheduling</li>
+        <li>SSH, SCP, rsync for remote file transfer</li>
+        <li>Environment variables &amp; .bashrc/.zshrc</li>
+        <li>Piping &amp; redirection (|, &gt;, &gt;&gt;, 2&gt;&amp;1)</li>
+        <li>Networking commands: curl, wget, netstat, nmap</li>
+      </ul>
+    </div>
+    <div class="card devops-card border-devops">
+      <div class="card-accent accent-devops"></div>
+      <div class="card-num">02</div>
+      <div class="card-title">VMs / Bare Metal Machines (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Virtualization concepts: hypervisors (Type 1, Type 2)</li>
+        <li>VirtualBox, VMware, KVM</li>
+        <li>Linux server administration (Ubuntu, CentOS, Debian)</li>
+        <li>Package management: apt, yum, snap</li>
+        <li>User management &amp; sudo privileges</li>
+        <li>Disk partitioning &amp; LVM</li>
+        <li>Network configuration: ip, ifconfig, netplan</li>
+        <li>Systemd, services &amp; unit files</li>
+      </ul>
+    </div>
+    <div class="card devops-card border-devops">
+      <div class="card-accent accent-devops"></div>
+      <div class="card-num">03</div>
+      <div class="card-title">Process Mgmt + Reverse Proxies (From Syllabus)</div>
+      <ul class="card-list">
+        <li>PM2 — Node.js process manager, cluster mode</li>
+        <li>Supervisor for Python/other processes</li>
+        <li>Nginx — reverse proxy, load balancer, config</li>
+        <li>Apache HTTP server basics</li>
+        <li>Traefik — dynamic reverse proxy for containers</li>
+        <li>Virtual hosts &amp; server blocks</li>
+        <li>Upstream servers &amp; proxy_pass</li>
+        <li>Nginx rate limiting &amp; caching</li>
+        <li>Load balancing algorithms: round-robin, least-conn</li>
+      </ul>
+    </div>
+    <div class="card devops-card border-devops">
+      <div class="card-accent accent-devops"></div>
+      <div class="card-num">04</div>
+      <div class="card-title">Certificates &amp; Cert Management (From Syllabus)</div>
+      <ul class="card-list">
+        <li>TLS/SSL — handshake, certificates, cipher suites</li>
+        <li>Let's Encrypt &amp; Certbot (free SSL)</li>
+        <li>cert-manager in Kubernetes</li>
+        <li>Certificate rotation &amp; renewal automation</li>
+        <li>Wildcard certificates</li>
+        <li>mTLS (mutual TLS) for service-to-service auth</li>
+        <li>HashiCorp Vault for secrets management</li>
+        <li>AWS Certificate Manager (ACM)</li>
+      </ul>
+    </div>
+    <div class="card devops-card border-devops">
+      <div class="card-accent accent-devops"></div>
+      <div class="card-num">05</div>
+      <div class="card-title">ASGs / MIGs (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Auto Scaling Groups (AWS ASG) — policies, lifecycle hooks</li>
+        <li>GCP Managed Instance Groups (MIGs)</li>
+        <li>Horizontal vs Vertical scaling</li>
+        <li>Launch templates &amp; AMIs</li>
+        <li>Target tracking &amp; step scaling policies</li>
+        <li>Warm pools &amp; predictive scaling</li>
+        <li>Health checks &amp; automatic instance replacement</li>
+        <li>Cost optimization with Spot instances</li>
+      </ul>
+    </div>
+    <div class="card devops-card border-devops">
+      <div class="card-accent accent-devops"></div>
+      <div class="card-num">06</div>
+      <div class="card-title">Containers &amp; Container Runtimes (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Container concepts: namespaces, cgroups, union filesystems</li>
+        <li>OCI (Open Container Initiative) specs</li>
+        <li>containerd vs CRI-O runtimes</li>
+        <li>Podman (rootless containers)</li>
+        <li>Container networking: bridge, host, overlay</li>
+        <li>Container storage: volumes, bind mounts</li>
+        <li>Multi-stage builds for smaller images</li>
+        <li>Container security scanning (Trivy, Snyk)</li>
+      </ul>
+    </div>
+    <div class="card devops-card border-devops">
+      <div class="card-accent accent-devops"></div>
+      <div class="card-num">07</div>
+      <div class="card-title">Docker (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Dockerfile — instructions, layers, caching</li>
+        <li>Docker images: build, tag, push to registry</li>
+        <li>Docker Compose — multi-container apps</li>
+        <li>Docker networking &amp; volumes</li>
+        <li>Docker Hub, ECR, GCR registries</li>
+        <li>Docker secrets &amp; configs</li>
+        <li>Docker Swarm basics</li>
+        <li>.dockerignore &amp; image optimization</li>
+        <li>Dev containers for consistent environments</li>
+      </ul>
+    </div>
+    <div class="card devops-card border-devops">
+      <div class="card-accent accent-devops"></div>
+      <div class="card-num">08</div>
+      <div class="card-title">Kubernetes 1 — Core Concepts (From Syllabus)</div>
+      <ul class="card-list">
+        <li>K8s architecture: control plane, worker nodes</li>
+        <li>Pods, ReplicaSets, Deployments</li>
+        <li>Services: ClusterIP, NodePort, LoadBalancer, ExternalName</li>
+        <li>ConfigMaps &amp; Secrets</li>
+        <li>Namespaces &amp; resource quotas</li>
+        <li>Ingress &amp; Ingress controllers (Nginx, Traefik)</li>
+        <li>Persistent Volumes &amp; Persistent Volume Claims</li>
+        <li>kubectl commands mastery</li>
+        <li>Health probes: liveness, readiness, startup</li>
+      </ul>
+    </div>
+    <div class="card devops-card border-devops">
+      <div class="card-accent accent-devops"></div>
+      <div class="card-num">09</div>
+      <div class="card-title">Kubernetes 2 — Advanced (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Helm: charts, templates, values, releases</li>
+        <li>StatefulSets for databases</li>
+        <li>DaemonSets &amp; Jobs / CronJobs</li>
+        <li>Horizontal Pod Autoscaler (HPA) &amp; VPA</li>
+        <li>RBAC: Roles, ClusterRoles, Bindings</li>
+        <li>Network Policies for pod-to-pod security</li>
+        <li>Service Mesh: Istio / Linkerd basics</li>
+        <li>GitOps with ArgoCD / Flux</li>
+        <li>Kubernetes Operators &amp; CRDs</li>
+        <li>EKS (AWS), GKE (GCP), AKS (Azure)</li>
+      </ul>
+    </div>
+    <div class="card devops-card border-devops">
+      <div class="card-accent accent-devops"></div>
+      <div class="card-num">10</div>
+      <div class="card-title">CI/CD (From Syllabus)</div>
+      <ul class="card-list">
+        <li>GitHub Actions — workflows, triggers, jobs, steps</li>
+        <li>GitLab CI/CD — pipelines, runners</li>
+        <li>Jenkins — Jenkinsfile, plugins</li>
+        <li>CircleCI &amp; Travis CI basics</li>
+        <li>Automated testing in pipelines</li>
+        <li>Docker build &amp; push in CI</li>
+        <li>Blue/Green, Canary, Rolling deployments</li>
+        <li>Secrets management in pipelines</li>
+        <li>Deployment to K8s via CI/CD</li>
+      </ul>
+    </div>
+    <div class="card devops-card border-devops">
+      <div class="card-accent accent-devops"></div>
+      <div class="card-num">11</div>
+      <div class="card-title">Monitoring / Observability (From Syllabus)</div>
+      <ul class="card-list">
+        <li>The 3 pillars: Logs, Metrics, Traces</li>
+        <li>Prometheus — scraping, PromQL queries, alerting rules</li>
+        <li>Grafana — dashboards, data sources, alerts</li>
+        <li>ELK Stack: Elasticsearch, Logstash, Kibana</li>
+        <li>Loki — log aggregation for Kubernetes</li>
+        <li>Jaeger / Zipkin — distributed tracing</li>
+        <li>OpenTelemetry — vendor-neutral instrumentation</li>
+        <li>Uptime monitoring: Better Uptime, PagerDuty</li>
+        <li>Sentry — error tracking &amp; performance</li>
+      </ul>
+    </div>
+    <div class="card devops-card border-devops">
+      <div class="card-accent accent-devops"></div>
+      <div class="card-num">12</div>
+      <div class="card-title">IaC — Infrastructure as Code (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Terraform — providers, resources, state, modules</li>
+        <li>Terraform Cloud / remote state backends</li>
+        <li>Ansible — playbooks, roles, inventory, idempotency</li>
+        <li>Pulumi — IaC in TypeScript/Python</li>
+        <li>AWS CloudFormation basics</li>
+        <li>CDK (Cloud Development Kit)</li>
+        <li>Terragrunt for Terraform code organization</li>
+        <li>drift detection &amp; state management</li>
+      </ul>
+    </div>
+    <div class="card devops-card border-devops">
+      <div class="card-accent accent-devops"></div>
+      <div class="card-num">13</div>
+      <div class="card-title">CDNs + Object Stores (From Syllabus)</div>
+      <ul class="card-list">
+        <li>CDN concepts: PoPs, edge caching, cache invalidation</li>
+        <li>Cloudflare — CDN, DNS, Workers, R2, D1</li>
+        <li>AWS CloudFront + S3 + Route 53 combo</li>
+        <li>AWS S3: buckets, policies, versioning, lifecycle rules</li>
+        <li>GCP Cloud Storage / Azure Blob Storage</li>
+        <li>Presigned URLs for secure file access</li>
+        <li>Static site hosting on S3/CloudFront</li>
+        <li>Cache-Control headers &amp; strategies</li>
+      </ul>
+    </div>
+    <div class="card devops-card border-devops">
+      <div class="card-accent accent-devops"></div>
+      <div class="card-num">14</div>
+      <div class="card-title">Sandboxing / Firecracker (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Firecracker MicroVMs — AWS Lambda/Fargate foundation</li>
+        <li>gVisor (container runtime sandbox by Google)</li>
+        <li>seccomp — system call filtering for containers</li>
+        <li>AppArmor &amp; SELinux for mandatory access control</li>
+        <li>Container security hardening</li>
+        <li>Rootless containers &amp; user namespaces</li>
+        <li>Read-only filesystems &amp; minimal base images</li>
+        <li>Cloud Run / AWS Fargate (serverless containers)</li>
+      </ul>
+    </div>
+    <div class="card devops-card border-devops">
+      <div class="card-accent accent-devops"></div>
+      <div class="card-num">15</div>
+      <div class="card-title">Cloud Platforms (AWS Priority)</div>
+      <ul class="card-list">
+        <li>AWS Core: EC2, VPC, IAM, S3, RDS, Lambda, ECS, EKS</li>
+        <li>AWS networking: VPC, subnets, route tables, NAT, IGW</li>
+        <li>AWS security: IAM roles, policies, SCPs, SGs</li>
+        <li>GCP: Compute Engine, GKE, Cloud Run, BigQuery</li>
+        <li>Azure: VM, AKS, Azure Functions, CosmosDB</li>
+        <li>Multi-cloud strategies</li>
+        <li>Cloud cost optimization (RIs, Savings Plans)</li>
+        <li>Well-Architected Framework</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- RESOURCES: DEVOPS -->
+  <div class="section-block">
+    <div class="section-block-title">📚 Best Resources (Reddit Recommended)</div>
+    <div class="resource-grid">
+      <a href="https://kodekloud.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#7c6fff"></span>KodeKloud (Best DevOps Labs — Reddit #1)</a>
+      <a href="https://github.com/techiescamp/kubernetes-learning-path" target="_blank" class="resource-link"><span class="resource-dot" style="background:#7c6fff"></span>K8s Learning Path (GitHub)</a>
+      <a href="https://www.udemy.com/course/devops-with-docker-kubernetes-and-azure-devops/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>DevOps Masterclass — 6 Tools (Udemy)</a>
+      <a href="https://www.udemy.com/course/docker-kubernetes-the-practical-guide/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>Docker &amp; K8s Practical Guide — Udemy</a>
+      <a href="https://kubernetes.io/training/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>Kubernetes Official Training</a>
+      <a href="https://labs.play-with-docker.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>Play With Docker (FREE Lab)</a>
+      <a href="https://labs.play-with-k8s.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>Play With Kubernetes (FREE Lab)</a>
+      <a href="https://learn.cantrill.io/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>Adrian Cantrill — AWS (Best Course Ever)</a>
+      <a href="https://acloudguru.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>A Cloud Guru</a>
+      <a href="https://www.terraform.io/docs" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>Terraform Official Docs</a>
+      <a href="https://www.youtube.com/@TechWorldwithNana" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>TechWorld with Nana (YouTube)</a>
+      <a href="https://www.youtube.com/@NetworkChuck" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>NetworkChuck (YouTube)</a>
+      <a href="https://www.cloudskillsboost.google/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Google Cloud Skills Boost (FREE)</a>
+    </div>
+  </div>
+
+  <!-- PROJECTS: DEVOPS -->
+  <div class="section-block">
+    <div class="section-block-title">🏗️ Projects To Build</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-level c-devops">Beginner</div>
+        <div class="project-name">Dockerize Your FSWD App</div>
+        <div class="project-desc">Take your portfolio app, write Dockerfile, docker-compose with Postgres+Redis, push to Docker Hub.</div>
+        <div class="project-stack"><span class="tech-tag">Docker</span><span class="tech-tag">Docker Compose</span><span class="tech-tag">Nginx</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-level c-devops">Intermediate</div>
+        <div class="project-name">CI/CD Pipeline</div>
+        <div class="project-desc">GitHub Actions pipeline: test → build Docker image → push ECR → deploy to ECS/K8s automatically.</div>
+        <div class="project-stack"><span class="tech-tag">GitHub Actions</span><span class="tech-tag">AWS ECR</span><span class="tech-tag">ECS</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-level c-devops">Intermediate</div>
+        <div class="project-name">Kubernetes Cluster Deployment</div>
+        <div class="project-desc">Deploy multi-service app on K8s with HPA, Ingress, Secrets, ConfigMaps, PVCs, and Helm charts.</div>
+        <div class="project-stack"><span class="tech-tag">K8s</span><span class="tech-tag">Helm</span><span class="tech-tag">Ingress Nginx</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-level" style="color:#7c6fff">Advanced</div>
+        <div class="project-name">Complete Observability Stack</div>
+        <div class="project-desc">Prometheus + Grafana + Loki + Jaeger setup. Custom dashboards, alerts, traces for your K8s cluster.</div>
+        <div class="project-stack"><span class="tech-tag">Prometheus</span><span class="tech-tag">Grafana</span><span class="tech-tag">Loki</span><span class="tech-tag">Jaeger</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-level" style="color:#7c6fff">Advanced</div>
+        <div class="project-name">IaC-Provisioned Cloud Infra</div>
+        <div class="project-desc">Terraform provisions VPC, EKS cluster, RDS, S3, CloudFront. ArgoCD deploys app via GitOps.</div>
+        <div class="project-stack"><span class="tech-tag">Terraform</span><span class="tech-tag">EKS</span><span class="tech-tag">ArgoCD</span><span class="tech-tag">AWS</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <div class="section-block">
+    <div class="section-block-title">🏆 Certifications (Do These)</div>
+    <div class="resource-grid">
+      <a href="https://www.cncf.io/certification/cka/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#7c6fff"></span>CKA — Certified Kubernetes Administrator</a>
+      <a href="https://www.cncf.io/certification/ckad/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#7c6fff"></span>CKAD — Certified K8s App Developer</a>
+      <a href="https://aws.amazon.com/certification/certified-solutions-architect-associate/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>AWS Solutions Architect Associate</a>
+      <a href="https://www.hashicorp.com/certification/terraform-associate" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>HashiCorp Terraform Associate</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     PHASE 3: WEB3 / SOLANA
+══════════════════════════════════════════════════ -->
+<div id="web3" class="phase-separator"><span>— Phase 3 Begins Here —</span></div>
+<div class="phase-wrapper">
+  <div class="phase-hero">
+    <div class="phase-tag c-web3" style="margin-bottom:20px;">
+      <span style="width:24px;height:1px;background:var(--web3-color);display:inline-block;"></span>
+      PHASE 03 · WEB3 &amp; SOLANA DEVELOPMENT
+    </div>
+    <h2 class="phase-title" style="color:var(--web3-color)">Web3 &amp;<br>Solana</h2>
+    <p class="phase-desc">Become a Solana/Web3 developer. Master blockchain fundamentals, Rust, Anchor framework, DeFi protocols, and build real on-chain programs. The frontier of software.</p>
+    <div class="phase-stats">
+      <div class="stat-chip"><span>⏱</span>Duration: 4–6 Months</div>
+      <div class="stat-chip"><span>🦀</span>Language: Rust + TypeScript</div>
+      <div class="stat-chip"><span>📋</span>18 Core Topics (From Syllabus)</div>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card web3-card border-web3">
+      <div class="card-accent accent-web3"></div>
+      <div class="card-num">01</div>
+      <div class="card-title">Intro to Blockchains (From Syllabus)</div>
+      <ul class="card-list">
+        <li>What is a blockchain — distributed ledger concept</li>
+        <li>Consensus mechanisms: PoW, PoS, PoH (Solana)</li>
+        <li>Transactions, blocks, hashes, Merkle trees</li>
+        <li>Bitcoin vs Ethereum vs Solana differences</li>
+        <li>Web1 → Web2 → Web3 evolution</li>
+        <li>Wallets, keys, addresses explained</li>
+        <li>dApps, smart contracts, DAOs</li>
+        <li>Layer 1 vs Layer 2 solutions</li>
+      </ul>
+    </div>
+    <div class="card web3-card border-web3">
+      <div class="card-accent accent-web3"></div>
+      <div class="card-num">02</div>
+      <div class="card-title">Cryptography (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Symmetric vs Asymmetric encryption</li>
+        <li>Hash functions: SHA-256, Keccak-256</li>
+        <li>Public/Private key cryptography (Ed25519 on Solana)</li>
+        <li>Digital signatures — signing &amp; verification</li>
+        <li>Elliptic Curve Cryptography (ECC)</li>
+        <li>Zero-knowledge proofs basics</li>
+        <li>BIP-39 mnemonics &amp; HD wallets</li>
+        <li>Merkle proofs &amp; verification</li>
+      </ul>
+    </div>
+    <div class="card web3-card border-web3">
+      <div class="card-accent accent-web3"></div>
+      <div class="card-num">03</div>
+      <div class="card-title">Solana Architecture (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Proof of History (PoH) — Solana's innovation</li>
+        <li>Tower BFT consensus mechanism</li>
+        <li>Gulf Stream — mempool-less transaction forwarding</li>
+        <li>Sealevel — parallel smart contract execution</li>
+        <li>Turbine — block propagation protocol</li>
+        <li>Clusters: mainnet-beta, testnet, devnet, localnet</li>
+        <li>Validators, leaders, slots, epochs</li>
+        <li>Transaction fees &amp; rent mechanics</li>
+      </ul>
+    </div>
+    <div class="card web3-card border-web3">
+      <div class="card-accent accent-web3"></div>
+      <div class="card-num">04</div>
+      <div class="card-title">Solana Jargons: Authority, Owner (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Accounts model (everything is an account)</li>
+        <li>Account owner vs authority distinction</li>
+        <li>Program-owned vs system-owned accounts</li>
+        <li>Executable accounts (programs)</li>
+        <li>Rent-exemption &amp; lamports</li>
+        <li>Signers vs non-signers in transactions</li>
+        <li>Upgrade authority for programs</li>
+        <li>Mint authority &amp; freeze authority for tokens</li>
+      </ul>
+    </div>
+    <div class="card web3-card border-web3">
+      <div class="card-accent accent-web3"></div>
+      <div class="card-num">05</div>
+      <div class="card-title">PDAs — Program Derived Addresses (From Syllabus)</div>
+      <ul class="card-list">
+        <li>What are PDAs and why they exist</li>
+        <li>Finding PDAs with findProgramAddressSync</li>
+        <li>Seeds &amp; bump seeds</li>
+        <li>Signing with PDAs in programs</li>
+        <li>PDAs as deterministic storage accounts</li>
+        <li>Cross-program invocation (CPI) with PDA signing</li>
+        <li>Common PDA patterns: vaults, state accounts</li>
+      </ul>
+    </div>
+    <div class="card web3-card border-web3">
+      <div class="card-accent accent-web3"></div>
+      <div class="card-num">06</div>
+      <div class="card-title">@solana/web3.js or Gill (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Connecting to a Solana cluster (Connection, Commitment)</li>
+        <li>Keypair generation &amp; management</li>
+        <li>Creating, signing, sending transactions</li>
+        <li>Fetching account data &amp; balances</li>
+        <li>Transaction instructions &amp; accounts</li>
+        <li>Versioned transactions &amp; address lookup tables</li>
+        <li>Gill — newer, more ergonomic Solana client library</li>
+        <li>Listening to program logs &amp; events</li>
+      </ul>
+    </div>
+    <div class="card web3-card border-web3">
+      <div class="card-accent accent-web3"></div>
+      <div class="card-num">07</div>
+      <div class="card-title">Solana Wallet Adapter (From Syllabus)</div>
+      <ul class="card-list">
+        <li>@solana/wallet-adapter-react setup</li>
+        <li>WalletMultiButton component</li>
+        <li>Connecting Phantom, Solflare, Backpack wallets</li>
+        <li>useWallet, useConnection hooks</li>
+        <li>Signing messages (off-chain auth)</li>
+        <li>Sending transactions from frontend</li>
+        <li>Handling wallet events (connect, disconnect)</li>
+        <li>Mobile wallet adapter for native apps</li>
+      </ul>
+    </div>
+    <div class="card web3-card border-web3">
+      <div class="card-accent accent-web3"></div>
+      <div class="card-num">08</div>
+      <div class="card-title">Data Model (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Borsh serialization (Binary Object Representation)</li>
+        <li>Account discriminators in Anchor</li>
+        <li>Deserializing raw account data</li>
+        <li>Storing and reading complex data structures</li>
+        <li>Vec, HashMap, String in on-chain storage</li>
+        <li>Space calculation for account rent</li>
+        <li>Upgrading account layouts</li>
+      </ul>
+    </div>
+    <div class="card web3-card border-web3">
+      <div class="card-accent accent-web3"></div>
+      <div class="card-num">09</div>
+      <div class="card-title">Token Program (From Syllabus)</div>
+      <ul class="card-list">
+        <li>SPL Token program: mints, token accounts, ATA</li>
+        <li>Creating fungible tokens (mint authority, supply)</li>
+        <li>Token-2022 program &amp; extensions</li>
+        <li>NFTs — Metaplex standard (MPL Core, Legacy)</li>
+        <li>Token metadata program</li>
+        <li>Compressed NFTs (cNFTs) with Bubblegum</li>
+        <li>Token transfers &amp; approvals</li>
+        <li>Burning &amp; closing token accounts</li>
+      </ul>
+    </div>
+    <div class="card web3-card border-web3">
+      <div class="card-accent accent-web3"></div>
+      <div class="card-num">10</div>
+      <div class="card-title">DeFi: AMM, DLMM, CLMM, Perps (From Syllabus)</div>
+      <ul class="card-list">
+        <li>AMM (Automated Market Maker) — x*y=k formula</li>
+        <li>Liquidity pools, LP tokens, impermanent loss</li>
+        <li>DLMM (Dynamic Liquidity Market Maker) — Meteora</li>
+        <li>CLMM (Concentrated Liquidity) — Raydium, Orca</li>
+        <li>Perpetual futures — funding rates, mark price</li>
+        <li>Order books vs AMMs</li>
+        <li>Lending protocols (Marginfi, Kamino)</li>
+        <li>Price oracles: Pyth Network, Switchboard</li>
+        <li>Flash loans &amp; arbitrage mechanics</li>
+      </ul>
+    </div>
+    <div class="card web3-card border-web3">
+      <div class="card-accent accent-web3"></div>
+      <div class="card-num">11</div>
+      <div class="card-title">Rust Easy (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Ownership, borrowing, lifetimes — The Rust way</li>
+        <li>Structs, enums, traits, impl blocks</li>
+        <li>Pattern matching (match, if let)</li>
+        <li>Error handling: Result&lt;T,E&gt;, Option&lt;T&gt;, ? operator</li>
+        <li>Vectors, HashMaps, Strings, slices</li>
+        <li>Closures &amp; iterators</li>
+        <li>Cargo: build, test, add dependencies</li>
+        <li>Module system &amp; visibility (pub, use, mod)</li>
+      </ul>
+    </div>
+    <div class="card web3-card border-web3">
+      <div class="card-accent accent-web3"></div>
+      <div class="card-num">12</div>
+      <div class="card-title">Rust Advanced (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Generic types &amp; trait bounds</li>
+        <li>Lifetime annotations &amp; elision rules</li>
+        <li>Smart pointers: Box, Rc, Arc, RefCell</li>
+        <li>Concurrency: threads, Mutex, channels, async/await</li>
+        <li>Trait objects (dyn Trait) &amp; dynamic dispatch</li>
+        <li>Macros: declarative &amp; procedural</li>
+        <li>Unsafe Rust basics (for FFI)</li>
+        <li>Testing: unit tests, integration tests, doc tests</li>
+      </ul>
+    </div>
+    <div class="card web3-card border-web3">
+      <div class="card-accent accent-web3"></div>
+      <div class="card-num">13</div>
+      <div class="card-title">Anchor Framework (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Anchor program structure (lib.rs, instructions, state)</li>
+        <li>Account validation macros (#[account], constraints)</li>
+        <li>Error handling with custom error codes</li>
+        <li>CPI — Cross-Program Invocations</li>
+        <li>Anchor TypeScript client (Program, Idl, methods)</li>
+        <li>Testing with Anchor (bankrun, mocha)</li>
+        <li>Program deployment &amp; upgrade authority</li>
+        <li>Anchor events &amp; emission</li>
+        <li>Anchor Playground (browser-based dev)</li>
+      </ul>
+    </div>
+    <div class="card web3-card border-web3">
+      <div class="card-accent accent-web3"></div>
+      <div class="card-num">14</div>
+      <div class="card-title">Common Contracts: Staking / Escrow (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Token staking program — lock, earn rewards, unstake</li>
+        <li>Escrow program — trustless token swaps between two parties</li>
+        <li>Vault program — deposit &amp; withdraw with authority</li>
+        <li>Vesting contract — time-locked token release</li>
+        <li>Lottery / raffle contract</li>
+        <li>Multisig programs (Squads Protocol)</li>
+        <li>DAO voting contracts</li>
+        <li>Reentrancy guards &amp; security patterns</li>
+      </ul>
+    </div>
+    <div class="card web3-card border-web3">
+      <div class="card-accent accent-web3"></div>
+      <div class="card-num">15</div>
+      <div class="card-title">Indexing (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Why indexing matters — RPC limitations</li>
+        <li>The Graph Protocol (GraphQL indexing)</li>
+        <li>Helius RPC — enhanced APIs, webhooks</li>
+        <li>Shyft / Triton One for advanced indexing</li>
+        <li>Building custom indexers (listen to program logs)</li>
+        <li>Yellowstone Geyser plugin</li>
+        <li>DAS API for compressed NFTs</li>
+        <li>Historical data &amp; transaction parsing</li>
+      </ul>
+    </div>
+    <div class="card web3-card border-web3">
+      <div class="card-accent accent-web3"></div>
+      <div class="card-num">16</div>
+      <div class="card-title">MPC and Shamir's Secret Sharing (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Multi-Party Computation (MPC) — keyless wallets</li>
+        <li>Shamir's Secret Sharing — threshold signature schemes</li>
+        <li>Threshold Signature Schemes (TSS)</li>
+        <li>MPC wallets: Fireblocks, Privy, Magic</li>
+        <li>Social recovery wallets</li>
+        <li>Secure key sharding &amp; reconstruction</li>
+        <li>Hardware Security Modules (HSMs)</li>
+      </ul>
+    </div>
+    <div class="card web3-card border-web3">
+      <div class="card-accent accent-web3"></div>
+      <div class="card-num">17</div>
+      <div class="card-title">Ad Hoc Web2 + Web3 Integration (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Full-stack dApp architecture: Next.js + Anchor + Wallet Adapter</li>
+        <li>SIWS — Sign In With Solana (JWT auth)</li>
+        <li>Hybrid storage: on-chain state + off-chain DB (Supabase)</li>
+        <li>IPFS + Arweave for decentralized storage</li>
+        <li>Blink (Solana Actions) — shareable on-chain transactions</li>
+        <li>Jupiter API for token swaps in your app</li>
+        <li>Dialect for on-chain notifications</li>
+      </ul>
+    </div>
+    <div class="card web3-card border-web3">
+      <div class="card-accent accent-web3"></div>
+      <div class="card-num">18</div>
+      <div class="card-title">Partially Centralized Contracts (From Syllabus)</div>
+      <ul class="card-list">
+        <li>Admin controls in otherwise decentralized programs</li>
+        <li>Upgrade authority tradeoffs</li>
+        <li>Emergency pause mechanisms</li>
+        <li>Governance-controlled parameters</li>
+        <li>Multisig governance (Realms, Squads)</li>
+        <li>Timelock mechanisms for critical operations</li>
+        <li>Hybrid custody models</li>
+        <li>Compliance &amp; regulatory considerations in DeFi</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- RESOURCES: WEB3 -->
+  <div class="section-block">
+    <div class="section-block-title">📚 Best Resources (Reddit Recommended)</div>
+    <div class="resource-grid">
+      <a href="https://solana.com/developers/courses" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>Solana Official Dev Courses (FREE)</a>
+      <a href="https://www.anchor-lang.com/docs" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>Anchor Framework Official Docs</a>
+      <a href="https://www.rareskills.io/solana-tutorial" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>RareSkills Solana Tutorial (FREE — Reddit #1)</a>
+      <a href="https://learnweb3.io/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>LearnWeb3.io (FREE Degrees)</a>
+      <a href="https://www.alchemy.com/university" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>Alchemy University (FREE Bootcamp)</a>
+      <a href="https://cryptozombies.io/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>CryptoZombies (Gamified Learning)</a>
+      <a href="https://www.udemy.com/course/solana-developer/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>Solana Developer Bootcamp (Udemy)</a>
+      <a href="https://book.rustlang.ru/title-page.html" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>The Rust Book (Official — FREE)</a>
+      <a href="https://doc.rust-lang.org/rust-by-example/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>Rust By Example (FREE)</a>
+      <a href="https://www.youtube.com/@solanaturbine" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Solana Turbine YouTube</a>
+      <a href="https://www.youtube.com/@DappUniversity" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Dapp University YouTube</a>
+      <a href="https://explorer.solana.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Solana Explorer</a>
+      <a href="https://solscan.io/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Solscan — Transaction Explorer</a>
+    </div>
+  </div>
+
+  <!-- PROJECTS: WEB3 -->
+  <div class="section-block">
+    <div class="section-block-title">🏗️ On-Chain Projects To Build</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-level c-web3">Beginner</div>
+        <div class="project-name">Token Launcher</div>
+        <div class="project-desc">Create your own SPL token — mint authority, metadata, airdrop to wallets using Token-2022.</div>
+        <div class="project-stack"><span class="tech-tag">SPL Token</span><span class="tech-tag">Metaplex</span><span class="tech-tag">web3.js</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-level c-web3">Beginner</div>
+        <div class="project-name">Escrow dApp</div>
+        <div class="project-desc">Trustless token swap: Alice offers token A, Bob offers token B. Smart contract mediates exchange.</div>
+        <div class="project-stack"><span class="tech-tag">Anchor</span><span class="tech-tag">Rust</span><span class="tech-tag">Next.js</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-level" style="color:#ffd060">Intermediate</div>
+        <div class="project-name">Token Staking Platform</div>
+        <div class="project-desc">Stake tokens, earn rewards over time. Lock periods, APY calculation, unstake with penalty.</div>
+        <div class="project-stack"><span class="tech-tag">Anchor</span><span class="tech-tag">PDAs</span><span class="tech-tag">React</span><span class="tech-tag">Wallet Adapter</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-level" style="color:#ffd060">Intermediate</div>
+        <div class="project-name">NFT Marketplace</div>
+        <div class="project-desc">List, buy, sell NFTs. Royalties enforcement, offer system, collection pages. Full dApp.</div>
+        <div class="project-stack"><span class="tech-tag">Anchor</span><span class="tech-tag">Metaplex</span><span class="tech-tag">Helius</span><span class="tech-tag">Next.js</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-level" style="color:#7c6fff">Advanced</div>
+        <div class="project-name">Mini AMM / DEX</div>
+        <div class="project-desc">Build a simplified Uniswap V2 on Solana — constant product AMM, liquidity pools, token swaps.</div>
+        <div class="project-stack"><span class="tech-tag">Anchor</span><span class="tech-tag">DeFi math</span><span class="tech-tag">Pyth Oracle</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-level" style="color:#7c6fff">Advanced</div>
+        <div class="project-name">On-Chain DAO</div>
+        <div class="project-desc">Create a DAO with Realms — governance token, proposals, voting, treasury management.</div>
+        <div class="project-stack"><span class="tech-tag">Realms</span><span class="tech-tag">Anchor</span><span class="tech-tag">SPL Governance</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     EXAMS SECTION
+══════════════════════════════════════════════════ -->
+<div id="exams" class="mega-section">
+  <div class="mega-eyebrow c-exam">— Exam Roadmaps —</div>
+  <h2 class="mega-title" style="color:var(--exam-color)">IELTS · GRE · GATE</h2>
+  <p class="mega-sub">Ace the standardized tests. Resources, tips, and every previous year paper from 2011–2025.</p>
+</div>
+
+<!-- ─── IELTS ─── -->
+<div id="ielts" class="phase-wrapper" style="padding-top:0">
+  <div class="phase-hero" style="padding-top:40px;">
+    <div class="phase-tag c-exam" style="margin-bottom:20px;">
+      <span style="width:24px;height:1px;background:var(--exam-color);display:inline-block;"></span>
+      EXAM 01 · IELTS
+    </div>
+    <h2 class="phase-title" style="color:var(--exam-color);font-size:clamp(32px,4vw,56px)">IELTS Prep Guide</h2>
+    <p class="phase-desc">International English Language Testing System. Target band 7.5+ for top programs. 4 sections: Listening, Reading, Writing, Speaking.</p>
+    <div class="phase-stats">
+      <div class="stat-chip"><span>⏱</span>Prep Time: 2–4 Months</div>
+      <div class="stat-chip"><span>🎯</span>Target: Band 7.5+</div>
+      <div class="stat-chip"><span>📝</span>4 Sections</div>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-block-title">📚 Best IELTS Resources (Reddit Picks)</div>
+    <div class="resource-grid">
+      <a href="https://ieltsmaterial.com/ielts-reading-previous-year-actual-tests/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>IELTS Material — Reading Tests + Answers</a>
+      <a href="https://www.ielts.org/study-and-prepare" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>IELTS Official Practice Materials</a>
+      <a href="https://www.cambridgeenglish.org/learning-english/free-resources/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>Cambridge English Free Resources</a>
+      <a href="https://www.youtube.com/@ieltsliz" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>IELTS Liz (YouTube — Best FREE Channel)</a>
+      <a href="https://www.youtube.com/@IELTSADVANTAGE" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>IELTS Advantage (YouTube)</a>
+      <a href="https://www.youtube.com/@E2IELTS" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>E2 IELTS (YouTube)</a>
+      <a href="https://www.magoosh.com/ielts/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Magoosh IELTS Prep</a>
+      <a href="https://www.britishcouncil.org/exam/ielts/preparation" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>British Council IELTS Prep</a>
+      <a href="https://www.reddit.com/r/IELTS/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>r/IELTS — Reddit Community</a>
+      <a href="https://www.idp.com/global/ielts/test-preparation/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>IDP IELTS Practice Tests</a>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-block-title">💡 Tips to Ace IELTS</div>
+    <div class="tips-grid">
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Listening:</strong> Read questions BEFORE audio plays. Note synonyms and paraphrases used in answers. Don't leave blanks — guess intelligently.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Reading:</strong> Skim first (2 min), then scan for answers. Never read word-for-word. Use parallel reading — questions alongside text.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Writing Task 1:</strong> Describe overview FIRST. Never give personal opinions. Use precise vocabulary for trends (surged, plummeted, plateaued).</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Writing Task 2:</strong> Plan 5 minutes before writing. 4-paragraph structure: Intro → Body 1 → Body 2 → Conclusion. 250+ words minimum.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Speaking Part 1:</strong> Extend answers with reasons + examples. Never give 1-word answers. Use natural fillers: "That's an interesting question..."</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Speaking Part 2 (Cue Card):</strong> Use all 60 seconds of prep. Structure your talk. Keep talking for the full 2 minutes. Fluency matters more than perfect grammar.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Vocabulary:</strong> Learn collocations, not just single words. High-frequency academic word list (AWL) is essential for Reading &amp; Writing.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Time Management:</strong> Practice full mock tests weekly under timed conditions. Build exam stamina. Review every wrong answer — understand WHY.</div>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-block-title">📄 Previous Year Papers (IELTS 2011–2025)</div>
+    <div class="highlight-band" style="border-left-color:var(--exam-color)">
+      ⚠️ IELTS does not publicly release official past papers as they recycle questions. The Cambridge IELTS books (1–18) are the OFFICIAL practice tests. Buy/access Cambridge IELTS books 1–18 for authentic test experience. Below are free practice sources:
+    </div>
+    <div class="resource-grid">
+      <a href="https://ieltsmaterial.com/ielts-reading-previous-year-actual-tests/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>IELTS Material — 2020–2025 Actual Tests</a>
+      <a href="https://www.ielts.org/study-and-prepare/sample-test-questions" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>IELTS Official Sample Questions</a>
+      <a href="https://www.britishcouncil.org/exam/ielts/preparation" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>British Council Official Practice</a>
+      <a href="https://ieltsonlinetests.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>IELTS Online Tests (Free)</a>
+      <a href="https://www.ielts-blog.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>IELTS Blog — Exam Recollections</a>
+      <a href="https://www.reddit.com/r/IELTS/wiki/index" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>r/IELTS Wiki — Shared Test Experiences</a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── GRE ─── -->
+<div id="gre" class="phase-wrapper" style="padding-top:20px;">
+  <div class="phase-hero" style="padding-top:40px; border-top:1px solid var(--border);">
+    <div class="phase-tag c-exam" style="margin-bottom:20px;">
+      <span style="width:24px;height:1px;background:var(--exam-color);display:inline-block;"></span>
+      EXAM 02 · GRE
+    </div>
+    <h2 class="phase-title" style="color:var(--exam-color);font-size:clamp(32px,4vw,56px)">GRE Prep Guide</h2>
+    <p class="phase-desc">Graduate Record Examination. Required for most US/Canada grad programs. 3 sections: Analytical Writing, Verbal Reasoning, Quantitative Reasoning.</p>
+    <div class="phase-stats">
+      <div class="stat-chip"><span>⏱</span>Prep Time: 3–6 Months</div>
+      <div class="stat-chip"><span>🎯</span>Target: 320+ / 340</div>
+      <div class="stat-chip"><span>🧮</span>Math 170 + Verbal 170</div>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-block-title">📚 Best GRE Resources (Reddit Picks)</div>
+    <div class="resource-grid">
+      <a href="https://www.ets.org/gre/test-takers/general-test/prepare.html" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>ETS Official Prep (PowerPrep) — START HERE</a>
+      <a href="https://www.reddit.com/r/GRE/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>r/GRE — #1 Community Resource</a>
+      <a href="https://www.youtube.com/c/GregMatGRE" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>Greg Mat (YouTube — Reddit's Favorite)</a>
+      <a href="https://www.gregmat.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>GregMat+ Platform</a>
+      <a href="https://www.magoosh.com/gre/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Magoosh GRE (Best Quant Practice)</a>
+      <a href="https://www.classcentral.com/report/gre-preparation/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Class Central — 80+ GRE Resources</a>
+      <a href="https://www.manhattanprep.com/gre/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Manhattan Prep GRE</a>
+      <a href="https://vincekotchian.com/blog/gre" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>Vince Kotchian GRE Blog</a>
+      <a href="https://quizlet.com/subject/gre-vocabulary/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>Quizlet GRE Vocab Flashcards</a>
+      <a href="https://www.vocabulary.com/lists/191545" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>GRE High-Frequency Word List</a>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-block-title">💡 Tips to Ace GRE</div>
+    <div class="tips-grid">
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Quant Strategy:</strong> GRE Math tests concepts, not computation. Master algebra, geometry, word problems, data interpretation. Calculator is provided — use it wisely.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Vocabulary:</strong> Learn 500+ high-frequency GRE words. Use spaced repetition (Anki). Focus on context — Text Completion and Sentence Equivalence use nuanced vocabulary.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Analytical Writing:</strong> 30 min per essay. Analyze an issue + analyze an argument. Practice outlining in 5 min. ETS uses e-rater + human scorer.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Adaptive Test:</strong> GRE adapts by section — if you do well on section 1, section 2 gets harder but also has higher ceiling score. Never rush section 1.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Reading Comprehension:</strong> Read academic articles daily (NYT, Scientific American, Economist). Don't infer beyond what's stated — RC is literal.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Time on Quant:</strong> ~1.5 min per question. Skip and come back. Elimination works well. Don't compute when you can estimate or use answer choices.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Mock Tests:</strong> Take all 4 official PowerPrep tests (2 free, 2 paid). Take mocks under exam conditions — same time of day as your scheduled exam.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Score Validity:</strong> GRE scores are valid for 5 years. ScoreSelect lets you choose which scores to send — take the test early so you can retake if needed.</div>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-block-title">📄 Previous Year GRE Papers (2011–2025)</div>
+    <div class="pyq-grid">
+      <div class="pyq-card"><div class="pyq-year c-exam">PP1 (Free)</div><a href="https://www.ets.org/gre/test-takers/general-test/prepare.html" target="_blank" class="pyq-link">PowerPrep 1 → Official ETS</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">PP2 (Free)</div><a href="https://www.ets.org/gre/test-takers/general-test/prepare.html" target="_blank" class="pyq-link">PowerPrep 2 → Official ETS</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">PP3 &amp; 4</div><a href="https://ereg.ets.org/ereg/public/ui/ecommerce/testprep" target="_blank" class="pyq-link">Paid ETS Tests</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">Big Book</div><a href="https://www.reddit.com/r/GRE/wiki/resources" target="_blank" class="pyq-link">r/GRE Wiki → Big Book PDF</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">2020–2025</div><a href="https://www.hitbullseye.com/gre/gre-question-papers.php" target="_blank" class="pyq-link">HitBullseye GRE Papers</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">2018–2022</div><a href="https://www.yourmentorguru.com/gre-exam-question-papers/" target="_blank" class="pyq-link">YourMentorGuru Papers</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">2015–2019</div><a href="https://www.magoosh.com/gre/gre-prep/" target="_blank" class="pyq-link">Magoosh Practice Tests</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">2011–2015</div><a href="https://www.ets.org/content/dam/ets-org/pdfs/gre/paper-based-practice-test-1.pdf" target="_blank" class="pyq-link">ETS Paper Test 1 PDF</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">ETS Tests</div><a href="https://www.ets.org/content/dam/ets-org/pdfs/gre/paper-based-practice-test-2.pdf" target="_blank" class="pyq-link">ETS Paper Test 2 PDF</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">Mock Hub</div><a href="https://www.prepscholar.com/gre/blog/free-gre-practice-tests/" target="_blank" class="pyq-link">PrepScholar Free Mocks</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">Kaplan</div><a href="https://www.kaptest.com/gre/free/free-gre-practice-test" target="_blank" class="pyq-link">Kaplan Free GRE Test</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">Princeton</div><a href="https://www.princetonreview.com/grad/free-gre-practice-test" target="_blank" class="pyq-link">Princeton Review Free Test</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── GATE ─── -->
+<div id="gate" class="phase-wrapper" style="padding-top:20px;">
+  <div class="phase-hero" style="padding-top:40px; border-top:1px solid var(--border);">
+    <div class="phase-tag c-exam" style="margin-bottom:20px;">
+      <span style="width:24px;height:1px;background:var(--exam-color);display:inline-block;"></span>
+      EXAM 03 · GATE
+    </div>
+    <h2 class="phase-title" style="color:var(--exam-color);font-size:clamp(32px,4vw,56px)">GATE CS Prep Guide</h2>
+    <p class="phase-desc">Graduate Aptitude Test in Engineering — Computer Science. Gateway to IITs, NITs, PSUs. Tests core CS fundamentals at undergraduate level.</p>
+    <div class="phase-stats">
+      <div class="stat-chip"><span>⏱</span>Prep Time: 6–12 Months</div>
+      <div class="stat-chip"><span>🎯</span>Target: AIR &lt; 100</div>
+      <div class="stat-chip"><span>📋</span>10 Core CS Subjects</div>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-block-title">🎯 GATE CS Syllabus — All Subjects</div>
+    <div class="card-grid">
+      <div class="card border-exam" style="background:var(--surface2)">
+        <div class="card-num" style="color:var(--exam-color)">S1</div>
+        <div class="card-title">Data Structures &amp; Algorithms</div>
+        <ul class="card-list">
+          <li>Arrays, Linked Lists, Stacks, Queues</li>
+          <li>Trees: BST, AVL, Red-Black, B-Trees</li>
+          <li>Graphs: BFS, DFS, Dijkstra, Bellman-Ford, Floyd</li>
+          <li>Sorting: Merge, Heap, Quick, Radix</li>
+          <li>Hashing: hash functions, collision resolution</li>
+          <li>Time &amp; Space complexity analysis</li>
+          <li>Dynamic Programming &amp; Greedy algorithms</li>
+        </ul>
+      </div>
+      <div class="card border-exam" style="background:var(--surface2)">
+        <div class="card-num" style="color:var(--exam-color)">S2</div>
+        <div class="card-title">Operating Systems</div>
+        <ul class="card-list">
+          <li>Processes &amp; Threads, Scheduling algorithms</li>
+          <li>Process synchronization: mutex, semaphores</li>
+          <li>Deadlock: detection, prevention, avoidance</li>
+          <li>Memory management: paging, segmentation</li>
+          <li>Virtual memory: page replacement algorithms</li>
+          <li>File systems: FAT, inodes, directories</li>
+          <li>I/O management &amp; disk scheduling</li>
+        </ul>
+      </div>
+      <div class="card border-exam" style="background:var(--surface2)">
+        <div class="card-num" style="color:var(--exam-color)">S3</div>
+        <div class="card-title">Database Management Systems</div>
+        <ul class="card-list">
+          <li>ER model, relational model, keys</li>
+          <li>SQL: DDL, DML, DCL, joins, subqueries</li>
+          <li>Normalization: 1NF, 2NF, 3NF, BCNF</li>
+          <li>Transactions: ACID, concurrency control</li>
+          <li>Locks, 2PL, timestamp ordering</li>
+          <li>Indexing: B+ trees, hashing</li>
+          <li>Recovery: log-based, checkpointing</li>
+        </ul>
+      </div>
+      <div class="card border-exam" style="background:var(--surface2)">
+        <div class="card-num" style="color:var(--exam-color)">S4</div>
+        <div class="card-title">Computer Networks</div>
+        <ul class="card-list">
+          <li>OSI &amp; TCP/IP models</li>
+          <li>Physical layer: modulation, transmission</li>
+          <li>Data link: framing, error detection/correction</li>
+          <li>Network layer: IP, routing algorithms, OSPF, BGP</li>
+          <li>Transport layer: TCP, UDP, flow/congestion control</li>
+          <li>Application layer: HTTP, DNS, SMTP, FTP</li>
+          <li>Subnetting, CIDR, NAT, DHCP</li>
+        </ul>
+      </div>
+      <div class="card border-exam" style="background:var(--surface2)">
+        <div class="card-num" style="color:var(--exam-color)">S5</div>
+        <div class="card-title">Theory of Computation (TOC)</div>
+        <ul class="card-list">
+          <li>Finite Automata: DFA, NFA, minimization</li>
+          <li>Regular expressions &amp; languages</li>
+          <li>Context-Free Grammars (CFG) &amp; PDAs</li>
+          <li>Turing Machines: decidability</li>
+          <li>Undecidability &amp; reducibility</li>
+          <li>Chomsky hierarchy</li>
+          <li>Rice's theorem, halting problem</li>
+        </ul>
+      </div>
+      <div class="card border-exam" style="background:var(--surface2)">
+        <div class="card-num" style="color:var(--exam-color)">S6</div>
+        <div class="card-title">Compiler Design</div>
+        <ul class="card-list">
+          <li>Lexical analysis: tokenization, finite automata</li>
+          <li>Syntax analysis: top-down &amp; bottom-up parsing</li>
+          <li>LL(1) parsing, LR(0), SLR, LALR, CLR parsers</li>
+          <li>Semantic analysis: type checking, symbol table</li>
+          <li>Intermediate code generation: 3-address code</li>
+          <li>Code optimization techniques</li>
+          <li>Code generation &amp; register allocation</li>
+        </ul>
+      </div>
+      <div class="card border-exam" style="background:var(--surface2)">
+        <div class="card-num" style="color:var(--exam-color)">S7</div>
+        <div class="card-title">Computer Organization &amp; Architecture</div>
+        <ul class="card-list">
+          <li>Boolean algebra &amp; minimization (K-map)</li>
+          <li>Combinational circuits: adders, mux, decoders</li>
+          <li>Sequential circuits: flip-flops, counters, registers</li>
+          <li>Machine instructions &amp; addressing modes</li>
+          <li>Pipelining: hazards, forwarding, stalls</li>
+          <li>Cache memory: mapping, replacement policies</li>
+          <li>Memory hierarchy &amp; virtual memory</li>
+        </ul>
+      </div>
+      <div class="card border-exam" style="background:var(--surface2)">
+        <div class="card-num" style="color:var(--exam-color)">S8</div>
+        <div class="card-title">Discrete Mathematics</div>
+        <ul class="card-list">
+          <li>Set theory, relations, functions</li>
+          <li>Graph theory: degree, connectivity, trees, planarity</li>
+          <li>Combinatorics: permutations, combinations, pigeonhole</li>
+          <li>Mathematical logic: propositional &amp; predicate</li>
+          <li>Group theory &amp; lattices</li>
+          <li>Generating functions &amp; recurrences</li>
+          <li>Number theory basics</li>
+        </ul>
+      </div>
+      <div class="card border-exam" style="background:var(--surface2)">
+        <div class="card-num" style="color:var(--exam-color)">S9</div>
+        <div class="card-title">Algorithms (Advanced)</div>
+        <ul class="card-list">
+          <li>Divide and conquer: master theorem</li>
+          <li>Dynamic programming: classic problems</li>
+          <li>Greedy algorithms: correctness proofs</li>
+          <li>Graph algorithms: MST, shortest paths</li>
+          <li>NP-Completeness: reductions, classes P/NP</li>
+          <li>Approximation algorithms basics</li>
+          <li>Randomized algorithms basics</li>
+        </ul>
+      </div>
+      <div class="card border-exam" style="background:var(--surface2)">
+        <div class="card-num" style="color:var(--exam-color)">S10</div>
+        <div class="card-title">General Aptitude (GA)</div>
+        <ul class="card-list">
+          <li>Verbal ability: grammar, vocabulary, comprehension</li>
+          <li>Sentence completion &amp; critical reasoning</li>
+          <li>Numerical ability: arithmetic, algebra</li>
+          <li>Data interpretation: tables, charts, graphs</li>
+          <li>Logical reasoning: puzzles, sequences</li>
+          <li>Spatial reasoning</li>
+          <li>15 marks in every GATE paper — don't ignore!</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-block-title">📚 Best GATE Resources (Reddit Picks)</div>
+    <div class="resource-grid">
+      <a href="https://gateoverflow.in/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>GATEOverflow — THE #1 GATE Resource</a>
+      <a href="https://gateoverflow.in/previous-years" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>GATEOverflow PYQs (2007–2025)</a>
+      <a href="https://www.geeksforgeeks.org/gate-cs-notes-gq/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>GeeksForGeeks GATE CS Notes</a>
+      <a href="https://www.geeksforgeeks.org/quiz-corner-gq/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>GFG GATE Quiz Practice</a>
+      <a href="https://www.youtube.com/@GateSmashers" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Gate Smashers (YouTube — Best Free)</a>
+      <a href="https://www.youtube.com/@AbdulBari" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Abdul Bari — Algorithms (YouTube)</a>
+      <a href="https://www.youtube.com/@NareshIT" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Naresh IT — OS, DBMS (YouTube)</a>
+      <a href="https://testbook.com/gate" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>Testbook GATE Mock Tests</a>
+      <a href="https://www.reddit.com/r/GATE/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>r/GATE — Reddit Community</a>
+      <a href="https://goclasses.in/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>GO Classes (Premium — Worth it for IIT)</a>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-block-title">💡 Tips to Ace GATE CSE</div>
+    <div class="tips-grid">
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">PYQs are King:</strong> Solve ALL previous year questions from 2011–2025 on GATEOverflow. GATE frequently tests similar concepts with different framing. This is non-negotiable.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Don't Skip GA:</strong> General Aptitude is 15 marks. With 1 month of focused prep you can score 12–13/15. Never leave marks on the table in GA.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Negative Marking:</strong> 2-mark questions lose 2/3 marks when wrong. 1-mark questions lose 1/3. Don't guess unless you can eliminate 2+ options.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Subject Priority:</strong> DS+Algorithms, OS, DBMS, Networks carry maximum weightage. Master these first. TOC + Compiler Design are reliable scoring areas too.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Mock Tests:</strong> Start full mocks 3 months before exam. Analyze every wrong answer — understand the concept, not just the answer. Track progress weekly.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Time Strategy:</strong> 65 questions in 180 min = 2.77 min/question. Attempt easy 1-mark questions first. Save complex 2-mark questions for later rounds.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Revision Plan:</strong> 3 rounds: Learn → Practice PYQs → Mock test revision. Never leave a topic half-understood. One strong cycle beats three weak ones.</div>
+      <div class="tip-card" style="border-color:var(--exam-color)"><strong class="c-exam">Hyderabad Advantage:</strong> Coaching centers like Made Easy &amp; ACE Academy have Hyderabad branches. But self-study + GATEOverflow can be equally effective.</div>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-block-title">📄 GATE CS Previous Year Papers (2011–2025) — All From GATEOverflow</div>
+    <div class="pyq-grid">
+      <div class="pyq-card"><div class="pyq-year c-exam">GATE 2025</div><a href="https://gateoverflow.in/exam/860/gate-cse-2025-set-1" target="_blank" class="pyq-link">Set 1 → GATEOverflow</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">GATE 2024</div><a href="https://gateoverflow.in/exams/gate?type=1" target="_blank" class="pyq-link">2024 Papers → GATEOverflow</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">GATE 2023</div><a href="https://gateoverflow.in/exams/gate?type=1" target="_blank" class="pyq-link">2023 Papers → GATEOverflow</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">GATE 2022</div><a href="https://gateoverflow.in/exams/gate?type=1" target="_blank" class="pyq-link">2022 Papers → GATEOverflow</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">GATE 2021</div><a href="https://gateoverflow.in/exams/gate?type=1" target="_blank" class="pyq-link">2021 Papers → GATEOverflow</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">GATE 2020</div><a href="https://gateoverflow.in/exams/gate?type=1" target="_blank" class="pyq-link">2020 Papers → GATEOverflow</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">GATE 2019</div><a href="https://gateoverflow.in/exams/gate?type=1" target="_blank" class="pyq-link">2019 Papers → GATEOverflow</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">GATE 2018</div><a href="https://gateoverflow.in/exams/gate?type=1" target="_blank" class="pyq-link">2018 Papers → GATEOverflow</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">GATE 2017</div><a href="https://gateoverflow.in/exams/gate?type=1" target="_blank" class="pyq-link">2017 Papers → GATEOverflow</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">GATE 2016</div><a href="https://gateoverflow.in/exams/gate?type=1" target="_blank" class="pyq-link">2016 Papers → GATEOverflow</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">GATE 2015</div><a href="https://gateoverflow.in/exams/gate?type=1" target="_blank" class="pyq-link">2015 Papers → GATEOverflow</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">GATE 2014</div><a href="https://gateoverflow.in/exams/gate?type=1" target="_blank" class="pyq-link">2014 Papers → GATEOverflow</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">GATE 2013</div><a href="https://gateoverflow.in/exams/gate?type=1" target="_blank" class="pyq-link">2013 Papers → GATEOverflow</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">GATE 2012</div><a href="https://gateoverflow.in/exams/gate?type=1" target="_blank" class="pyq-link">2012 Papers → GATEOverflow</a></div>
+      <div class="pyq-card"><div class="pyq-year c-exam">GATE 2011</div><a href="https://gateoverflow.in/exam/42/gate-cse-2011-original-paper" target="_blank" class="pyq-link">2011 Paper → GATEOverflow</a></div>
+      <div class="pyq-card" style="border-color:rgba(255,208,96,0.3)"><div class="pyq-year c-exam">PDF Bundle</div><a href="https://gateoverflow.in/blog/16488/gate-overflow-gate-2025-previous-year-questions-free-download" target="_blank" class="pyq-link">All PYQs PDF → GATEOverflow</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     APTITUDE & REASONING
+══════════════════════════════════════════════════ -->
+<div id="aptitude" class="phase-separator"><span>— Aptitude &amp; Reasoning —</span></div>
+<div class="phase-wrapper" style="padding-top:40px;">
+  <div class="phase-hero" style="padding-top:40px;">
+    <div class="phase-tag c-exam" style="margin-bottom:20px;">
+      <span style="width:24px;height:1px;background:var(--exam-color);display:inline-block;"></span>
+      APTITUDE &amp; REASONING — Resources Only
+    </div>
+    <h2 class="phase-title" style="color:var(--exam-color);font-size:clamp(28px,3.5vw,48px)">Aptitude &amp; Logical Reasoning</h2>
+    <p class="phase-desc">Essential for placement tests, GATE GA section, campus interviews, and competitive exams. Master quant + reasoning to score top marks in every test.</p>
+  </div>
+
+  <div class="apt-grid">
+    <div class="apt-card">
+      <div class="apt-card-title c-exam">📚 Books (Most Recommended)</div>
+      <div class="resource-grid" style="flex-direction:column;">
+        <a href="https://www.amazon.in/Quantitative-Aptitude-Competitive-Examinations-Aggarwal/dp/9352534026" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>R.S. Aggarwal — Quantitative Aptitude (The Bible)</a>
+        <a href="https://www.amazon.in/Quantitative-Aptitude-CAT-Arun-Sharma/dp/9354680313" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>Arun Sharma — Quant for CAT (Advanced)</a>
+        <a href="https://www.amazon.in/Logical-Verbal-Reasoning-R-S-Aggarwal/dp/9352530446" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>R.S. Aggarwal — Verbal &amp; Non-Verbal Reasoning</a>
+        <a href="https://www.amazon.in/How-Read-Better-Faster-Linkletter/dp/8122309321" target="_blank" class="resource-link"><span class="resource-dot" style="background:#ffd060"></span>Shakuntala Devi — Puzzles to Puzzle You</a>
+      </div>
+    </div>
+    <div class="apt-card">
+      <div class="apt-card-title c-exam">🌐 Online Platforms</div>
+      <div class="resource-grid" style="flex-direction:column;">
+        <a href="https://www.indiabix.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>IndiaBix — Free Aptitude &amp; Reasoning Tests</a>
+        <a href="https://www.geeksforgeeks.org/aptitude-gq/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>GeeksForGeeks Aptitude Questions</a>
+        <a href="https://www.sanfoundry.com/placement-tests/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>Sanfoundry Placement Tests</a>
+        <a href="https://www.m4maths.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>M4Maths — Placement Aptitude</a>
+        <a href="https://testbook.com/test-series/free" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>Testbook — Aptitude Mock Tests</a>
+        <a href="https://www.freshersworld.com/aptitude" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>FreshersWorld — Aptitude Practice</a>
+      </div>
+    </div>
+    <div class="apt-card">
+      <div class="apt-card-title c-exam">📺 YouTube Channels</div>
+      <div class="resource-grid" style="flex-direction:column;">
+        <a href="https://www.youtube.com/@CareersIn360" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Careers360 — Aptitude Tricks</a>
+        <a href="https://www.youtube.com/c/StudySmartByNC" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Study Smart — Reasoning</a>
+        <a href="https://www.youtube.com/@MathsTricks" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Math Tricks &amp; Shortcuts</a>
+        <a href="https://www.youtube.com/@AptitudeNationOfficial" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Aptitude Nation</a>
+      </div>
+    </div>
+    <div class="apt-card">
+      <div class="apt-card-title c-exam">🎯 Topic-Wise Practice</div>
+      <div class="resource-grid" style="flex-direction:column;">
+        <a href="https://www.indiabix.com/aptitude/numbers/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>Numbers, HCF/LCM, Percentages</a>
+        <a href="https://www.indiabix.com/aptitude/time-and-work/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>Time &amp; Work / Speed &amp; Distance</a>
+        <a href="https://www.indiabix.com/logical-reasoning/puzzles/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>Puzzles &amp; Seating Arrangement</a>
+        <a href="https://www.indiabix.com/verbal-reasoning/series-completion/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>Series Completion &amp; Coding-Decoding</a>
+        <a href="https://www.indiabix.com/non-verbal-reasoning/series/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>Non-Verbal Reasoning &amp; Patterns</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     GET THE JOB
+══════════════════════════════════════════════════ -->
+<div id="jobs" class="phase-separator"><span>— Land The Job —</span></div>
+<div class="phase-wrapper" style="padding-top:40px;">
+  <div class="phase-hero" style="padding-top:40px;">
+    <div class="phase-tag c-job" style="margin-bottom:20px;">
+      <span style="width:24px;height:1px;background:var(--job-color);display:inline-block;"></span>
+      THE JOB PLAYBOOK
+    </div>
+    <h2 class="phase-title" style="color:var(--job-color)">Get The Job.<br>No Gatekeeping.</h2>
+    <p class="phase-desc">Everything you need to land your dream job — cold emails, finding founders, digital presence, interview strategy, and remote work hunting. Full playbook. No fluff.</p>
+  </div>
+
+  <!-- 1. COLD EMAILS -->
+  <div class="job-card">
+    <div class="job-card-accent"></div>
+    <h3>✉️ 1. How to Write Cold Emails (That Actually Get Replies)</h3>
+    <div class="job-steps">
+      <div class="job-step"><div class="step-n">1</div><div>Find the RIGHT person. For small startups: CEO or CTO. For mid-size: Head of Engineering or VP Eng. LinkedIn → Company page → People → Filter by role.</div></div>
+      <div class="job-step"><div class="step-n">2</div><div>Find their email using: <strong class="c-job">Hunter.io</strong> (most accurate), <strong class="c-job">Apollo.io</strong>, <strong class="c-job">RocketReach</strong>, or guess the format: firstname@company.com, firstname.lastname@company.com</div></div>
+      <div class="job-step"><div class="step-n">3</div><div>Keep it UNDER 150 words. No lengthy cover letters. Recruiters spend &lt;10 seconds on cold emails. Signal-to-noise ratio is everything.</div></div>
+      <div class="job-step"><div class="step-n">4</div><div>Subject line formula: <span class="c-job">"Developer intro | [specific thing you built] → [result]"</span> — Make it irresistibly curious and specific.</div></div>
+      <div class="job-step"><div class="step-n">5</div><div>ONE clear ask at the end. "Would you be open to a 15-minute call this week?" Don't ask for a job — ask for a conversation.</div></div>
+      <div class="job-step"><div class="step-n">6</div><div>Follow up ONCE after 5–7 days if no reply. Persistence (done respectfully) = 3x more replies. After 2 attempts, move on.</div></div>
+      <div class="job-step"><div class="step-n">7</div><div>Personalize EVERY email. Reference their recent product update, funding round, or blog post. Generic emails get deleted instantly.</div></div>
+    </div>
+    <div class="job-template">Subject: <span class="placeholder">Full-stack / Solana dev</span> intro | Built [X] → [Y users/result]
+
+Hi [Name],
+
+I came across [Company] while [specific thing — using product, seeing tweet, reading their blog]. 
+[One sentence showing you actually know what they do and why it excites you.]
+
+I'm a [role] with experience in [2–3 relevant skills]. 
+Recently I built [project] which [specific result — 500 users, reduced latency 40%, etc.].
+
+I believe I could [specific value to their team]. 
+Would you be open to a 15-min call this week?
+
+[Your name] | [GitHub link] | [Portfolio link]</div>
+  </div>
+
+  <!-- 2. REACH FOUNDERS -->
+  <div class="job-card">
+    <div class="job-card-accent"></div>
+    <h3>🎯 2. How to Find &amp; Reach Company Founders</h3>
+    <div class="job-steps">
+      <div class="job-step"><div class="step-n">1</div><div><strong class="c-job">LinkedIn:</strong> Search "[Company Name] CEO/CTO/Founder". Connect with a personalized note referencing their specific work. Comment on their posts first to get on their radar.</div></div>
+      <div class="job-step"><div class="step-n">2</div><div><strong class="c-job">Twitter/X:</strong> Many tech founders are very active. Follow them, engage genuinely with their tweets for 2–3 weeks, THEN DM. Never cold DM without prior engagement.</div></div>
+      <div class="job-step"><div class="step-n">3</div><div><strong class="c-job">Wellfound (AngelList):</strong> Tech startup founders actively post here. Message founders directly — they're MORE responsive here than LinkedIn.</div></div>
+      <div class="job-step"><div class="step-n">4</div><div><strong class="c-job">After funding rounds:</strong> Check TechCrunch, Crunchbase for newly funded startups. Email within 48 hours — they're actively hiring. Use: crunchbase.com/discover/funding-rounds</div></div>
+      <div class="job-step"><div class="step-n">5</div><div><strong class="c-job">GitHub:</strong> Find founders/lead engineers by looking at repositories of products you admire. Open high-quality PRs or issues — engineers respond to engineers.</div></div>
+      <div class="job-step"><div class="step-n">6</div><div><strong class="c-job">Meetups &amp; Conferences:</strong> ETHIndia, Solana hackathons, developer meetups in Hyderabad are gold. In-person introductions convert 10x better than cold emails.</div></div>
+      <div class="job-step"><div class="step-n">7</div><div><strong class="c-job">Discord &amp; Telegram:</strong> Join official servers of companies/projects you want to work for. Be consistently helpful, answer questions, then reach out directly.</div></div>
+    </div>
+    <div class="resource-grid" style="margin-top:20px;">
+      <a href="https://www.wellfound.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Wellfound (AngelList)</a>
+      <a href="https://www.crunchbase.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Crunchbase — Funded Startups</a>
+      <a href="https://www.linkedin.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>LinkedIn</a>
+      <a href="https://hunter.io/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Hunter.io — Email Finder</a>
+      <a href="https://apollo.io/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Apollo.io</a>
+    </div>
+  </div>
+
+  <!-- 3. YOUTUBE -->
+  <div class="job-card">
+    <div class="job-card-accent"></div>
+    <h3>🎥 3. How to Grow on YouTube (Developer Edition)</h3>
+    <div class="job-steps">
+      <div class="job-step"><div class="step-n">1</div><div><strong class="c-job">Pick Your Niche:</strong> "Full-stack developer building in public", "Solana/Web3 development", "DevOps &amp; Cloud tutorials". Specific niches grow faster than generic tech content.</div></div>
+      <div class="job-step"><div class="step-n">2</div><div><strong class="c-job">Building in Public = Best Content:</strong> Document everything you build in this roadmap. "I built a Solana staking program — here's how". Authenticity beats production quality.</div></div>
+      <div class="job-step"><div class="step-n">3</div><div><strong class="c-job">Video Types That Work:</strong> Tutorial videos ("How to set up K8s in 20 min"), Project walkthroughs, Error-solving videos ("I spent 2 days debugging this Anchor error"), Industry insights.</div></div>
+      <div class="job-step"><div class="step-n">4</div><div><strong class="c-job">SEO Strategy:</strong> Research keywords on YouTube before filming. "Solana staking tutorial 2025" + "Anchor framework beginners" — target low-competition, high-intent searches.</div></div>
+      <div class="job-step"><div class="step-n">5</div><div><strong class="c-job">Consistency &gt; Quality (Initially):</strong> Post 1 video/week minimum. First 50 videos are for learning. Use your real projects from this roadmap as content.</div></div>
+      <div class="job-step"><div class="step-n">6</div><div><strong class="c-job">Cross-Promote:</strong> Share every video on LinkedIn, Twitter, Reddit (r/webdev, r/devops, r/solana), and Discord communities. YouTube is hard to grow in isolation.</div></div>
+      <div class="job-step"><div class="step-n">7</div><div><strong class="c-job">The Credibility Loop:</strong> YouTube → Recruiters/founders see you → interview opportunities. At 1,000+ subscribers you'll start receiving DMs. At 5,000+ it changes your career.</div></div>
+    </div>
+    <div class="resource-grid" style="margin-top:20px;">
+      <a href="https://vidiq.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>VidIQ — YouTube SEO Tool</a>
+      <a href="https://www.tubebuddy.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>TubeBuddy — Growth Analytics</a>
+      <a href="https://www.youtube.com/@ThinkMediaPodcast" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Think Media — YouTube Growth</a>
+    </div>
+  </div>
+
+  <!-- 4. ACE INTERVIEWS -->
+  <div class="job-card">
+    <div class="job-card-accent"></div>
+    <h3>💡 4. How to Ace Technical Interviews</h3>
+    <div class="job-steps">
+      <div class="job-step"><div class="step-n">1</div><div><strong class="c-job">DSA:</strong> Solve 150+ LeetCode problems. Start with NeetCode 150 roadmap. Focus on patterns: sliding window, two pointers, BFS/DFS, DP, backtracking. Company-specific lists exist on LeetCode.</div></div>
+      <div class="job-step"><div class="step-n">2</div><div><strong class="c-job">System Design:</strong> Study Grokking System Design. Practice designing: URL shortener, Twitter, Uber, WhatsApp. Cover: load balancing, sharding, caching, CAP theorem, consistency patterns.</div></div>
+      <div class="job-step"><div class="step-n">3</div><div><strong class="c-job">Think Aloud:</strong> Interviewers don't just evaluate correctness — they evaluate thinking. Verbalize your approach BEFORE coding. Ask clarifying questions. Never code in silence.</div></div>
+      <div class="job-step"><div class="step-n">4</div><div><strong class="c-job">Project Deep Dives:</strong> Know your portfolio projects inside out. Why did you choose that DB? What would you do differently? How does it scale? They WILL probe your projects.</div></div>
+      <div class="job-step"><div class="step-n">5</div><div><strong class="c-job">Behavioral Questions (STAR Method):</strong> Situation → Task → Action → Result. Prepare 8–10 stories covering: leadership, conflict, failure, success, collaboration. For Web3 companies: add on-chain project stories.</div></div>
+      <div class="job-step"><div class="step-n">6</div><div><strong class="c-job">Mock Interviews:</strong> Use Pramp.com (FREE), Interviewing.io. Practice until interviews feel comfortable. Record yourself and watch the playback — painful but effective.</div></div>
+      <div class="job-step"><div class="step-n">7</div><div><strong class="c-job">Reverse Interview:</strong> Ask smart questions at the end: "What does the on-call rotation look like?", "How do you handle technical debt?", "What's the biggest technical challenge right now?" Shows maturity.</div></div>
+    </div>
+    <div class="resource-grid" style="margin-top:20px;">
+      <a href="https://neetcode.io/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>NeetCode 150 — Best DSA Roadmap</a>
+      <a href="https://www.pramp.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Pramp — Free Mock Interviews</a>
+      <a href="https://interviewing.io/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Interviewing.io</a>
+      <a href="https://www.youtube.com/c/TechWithTim" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>System Design Primer (GitHub)</a>
+      <a href="https://github.com/donnemartin/system-design-primer" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>System Design Primer (GitHub)</a>
+    </div>
+  </div>
+
+  <!-- 5. REMOTE JOBS -->
+  <div class="job-card">
+    <div class="job-card-accent"></div>
+    <h3>🌍 5. How to Get Remote Jobs (India → Global)</h3>
+    <div class="job-steps">
+      <div class="job-step"><div class="step-n">1</div><div><strong class="c-job">Web3-Specific Boards:</strong> Web3.career, Crypto.jobs, Wellfound Web3 filter. Solana ecosystem specifically: solana.com/jobs, Solana Foundation Discord #jobs channel.</div></div>
+      <div class="job-step"><div class="step-n">2</div><div><strong class="c-job">Remote-First Boards:</strong> Remote.co, Remotive, We Work Remotely, Remote OK. For developer-specific: JobsinJS.com, RemoteFrontendJobs.com, Nodesk.co/remote-work</div></div>
+      <div class="job-step"><div class="step-n">3</div><div><strong class="c-job">LinkedIn Optimization:</strong> Add "Open to Remote Work" in settings. Headline = your skills, not just your title. "Full-Stack & Solana Developer | Next.js | Rust | Anchor | 3 Production Apps"</div></div>
+      <div class="job-step"><div class="step-n">4</div><div><strong class="c-job">Build Public Portfolio:</strong> A strong GitHub + live deployed projects + YouTube videos is your visa. Recruiters in US/EU regularly hire Indian developers they find online.</div></div>
+      <div class="job-step"><div class="step-n">5</div><div><strong class="c-job">Hackathons:</strong> Solana hackathons (Colosseum), ETHGlobal, Devfolio pay cash prizes and attract employer attention. Winning or placing = instant credibility globally.</div></div>
+      <div class="job-step"><div class="step-n">6</div><div><strong class="c-job">Async Communication Skills:</strong> Remote jobs value written communication. Write clear Slack messages, detailed async updates, document your work. Show this in interviews.</div></div>
+      <div class="job-step"><div class="step-n">7</div><div><strong class="c-job">Payment Setup:</strong> Get Deel, Remote.com, or Wise account. Register as a freelancer → sole proprietorship → LLP as income grows. This legitimizes your remote income for Indian taxes.</div></div>
+    </div>
+    <div class="resource-grid" style="margin-top:20px;">
+      <a href="https://web3.career/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>Web3.career</a>
+      <a href="https://crypto.jobs/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>Crypto.jobs</a>
+      <a href="https://remoteok.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Remote OK</a>
+      <a href="https://weworkremotely.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>We Work Remotely</a>
+      <a href="https://www.wellfound.com/jobs?remote=true" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Wellfound Remote Jobs</a>
+      <a href="https://remotive.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#60cfff"></span>Remotive</a>
+      <a href="https://colosseum.org/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#00f5c4"></span>Colosseum — Solana Hackathons</a>
+      <a href="https://ethglobal.com/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#7c6fff"></span>ETHGlobal Hackathons</a>
+      <a href="https://devfolio.co/" target="_blank" class="resource-link"><span class="resource-dot" style="background:#fa8231"></span>Devfolio — India Hackathons</a>
+    </div>
+  </div>
+
+  <!-- FINAL MINDSET -->
+  <div class="section-block" style="border-color:rgba(0,245,196,0.3); background:rgba(0,245,196,0.04);">
+    <div class="section-block-title" style="color:var(--web3-color)">🔥 The Final Mindset — Number One Candidate Mentality</div>
+    <div class="tips-grid">
+      <div class="tip-card" style="border-color:var(--web3-color)"><strong class="c-web3">Build daily, ship weekly.</strong> Every week you should have something new to show — a commit, a blog post, a video, a project milestone. Stagnation is invisible to employers.</div>
+      <div class="tip-card" style="border-color:var(--web3-color)"><strong class="c-web3">Depth over breadth.</strong> Be dangerously good at 2–3 things rather than mediocre at 10. Specialists get paid and hired faster than generalists.</div>
+      <div class="tip-card" style="border-color:var(--web3-color)"><strong class="c-web3">Document everything.</strong> Blog your learnings. Tweet your progress. Build in public. Your online footprint IS your second resume — often more powerful than the paper one.</div>
+      <div class="tip-card" style="border-color:var(--web3-color)"><strong class="c-web3">Network before you need it.</strong> The best opportunities come from relationships. Make 1 genuine connection every week in your target ecosystem. Play long-term games.</div>
+      <div class="tip-card" style="border-color:var(--web3-color)"><strong class="c-web3">Contribute to open source.</strong> Find a project in the tech stack of your target company. Open meaningful PRs. This puts you on the radar of the people who matter.</div>
+      <div class="tip-card" style="border-color:var(--web3-color)"><strong class="c-web3">Rejection is data, not failure.</strong> Track every application and interview. Learn from every "no". Improve your resume, GitHub, and pitch based on real feedback.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  Made with obsession for a future <span>Number One Candidate</span> from Hyderabad. 🔥<br><br>
+  <span style="color:var(--muted2)">Full Stack → DevOps → Web3 → IELTS → GRE → GATE → The Job. Go get it.</span>
+</footer>
+
+</body>
+</html>
